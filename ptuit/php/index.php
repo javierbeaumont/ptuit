@@ -18,7 +18,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <?php
-require_once ( '../php/controladorFrontal.php');
+require_once ( $_SERVER['DOCUMENT_ROOT'].'/php/controladorFrontal.php');
 controladorFrontal::arranca();
 ?>
  
