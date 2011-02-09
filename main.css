@@ -6,11 +6,12 @@ body {
    background-color: #6c519b;
    font-family: "Helvetica,Arial,FreeSans";
    color: #ffffff;
+   font-size: 12pt;
 }
 
 #container {
    margin: 0 auto;
-   width: 700px;
+   width: 75%;
 }
 
 img{
