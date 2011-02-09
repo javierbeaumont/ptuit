@@ -10,10 +10,10 @@ onload=function()
 	claseNormal="input";
 	claseError="inputError";
 	ayuda=new Array();
-	ayuda["Nombre Usuario"]="Ingresa tu nombre de usuario. De 4 a 50 caracteres. OBLIGATORIO";
-	ayuda["Correo"]="Ingresa una dirección de correo electrónico válido.";
-	ayuda["Contraseña"]="Ingresa una contraseña de un mínimo de 8 caracteres.";
-	ayuda["Repetir Contraseña"]="Ingresa de nuevo la contraseña";
+	ayuda["Nombre Usuario"]="Ingresa tu nombre de usuario. De 4 a 50 caracteres.";
+	ayuda["Correo"]="Ingresa una direcciÃ³n de correo electrÃ³nico vÃ¡lida.";
+	ayuda["ContraseÃ±a"]="Ingresa una contraseÃ±a de un mÃ­nimo de 8 caracteres.";
+	ayuda["Repetir ContraseÃ±a"]="Ingresa de nuevo la contraseÃ±a.";
 	preCarga("imagen/ok.gif", "imagen/loading.gif", "imagen/error.gif");
 }
  
@@ -21,7 +21,6 @@ onload=function()
 
 function preCarga()
 {
-  
 	imagenes=new Array();
 	for(i=0; i<arguments.length; i++)
 	{
@@ -53,11 +52,10 @@ function nuevoAjax()
 
 function limpiaForm()
 {
-	for(i=0; i<=4; i++)
+	for(i=0; i<=3; i++)
 	{
 		form.elements[i].className=claseNormal;
 	}
-	
 }
 
 function campoError(campo)
@@ -102,7 +100,8 @@ function validaLongitud(valor, permiteVacio, minimo, maximo)
 
 function validaCorreo(valor)
 {
-	var reg=/(^[a-zA-Z0-9._-]{1,30})@([a-zA-Z0-9.-]{1,30}$)/;
+	var reg=/^[0-9a-z_\-\.]+@[0-9a-z\-\.]+\.[a-z]{2,4}$/i;
+
 	if(reg.test(valor)) return true;
 	else return false;
 }
@@ -117,13 +116,17 @@ function validaForm()
 	var inputPass=eliminaEspacios(form.inputPass.value);
 	var inputCorreo=eliminaEspacios(form.inputCorreo.value);
 	
-	
 	if(!validaLongitud(inputUser, 0, 4, 50)) campoError(form.inputUser);
-	if(!validaLongitud(inputRpass, 0, 8, 50)) campoError(form.inputRpass);
-	if(!validaLongitud(inputPass, 0, 8, 50)) campoError(form.inputPass);
+	if(!(inputPass==inputRpass)) {
+    campoError(form.inputRpass);
+    
+    }
+	if(!validaLongitud(inputPass, 0, 8, 50)){
+       campoError(form.inputPass);
+       campoError(form.inputRpass);
+  }
 	if(!validaCorreo(inputCorreo)) campoError(form.inputCorreo);
-	
-	
+
 	if(error==1)
 	{
 		var texto="<img src='imagen/error.gif' alt='Error'><br><br>Error: revise los campos en rojo.<br><br><button style='width:45px; height:18px; font-size:10px;' onClick='ocultaMensaje()' type='button'>Ok</button>";
@@ -133,12 +136,10 @@ function validaForm()
 	{
 		var texto="<img src='imagen/loading.gif' alt='Enviando'><br>Enviando. Por favor espere.<br><br><button style='width:60px; height:18px; font-size:10px;' onClick='ocultaMensaje()' type='button'>Ocultar</button>";
 		muestraMensaje(texto);
-		
 		var ajax=nuevoAjax();
 		ajax.open("POST", urlDestino, true);
 		ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		ajax.send("InputUser="+InputUser);
-		
+		ajax.send("inputUser="+inputUser);
 		ajax.onreadystatechange=function()
 		{
 			if (ajax.readyState==4)
@@ -148,8 +149,7 @@ function validaForm()
 				{
 					var texto="<img src='ok.gif' alt='Ok'><br>Gracias por su mensaje.<br>Le responderemos a la brevedad.<br><br><button style='width:45px; height:18px; font-size:10px;' onClick='ocultaMensaje()' type='button'>Ok</button>";
 				}
-				else var texto="<img src='error.gif'><br><br>Error: intente más tarde.<br><br><button style='width:45px; height:18px; font-size:10px;' onClick='ocultaMensaje()' type='button'>Ok</button>";
-				
+				else var texto="<img src='error.gif'><br><br>Error: intente mÃ¡s tarde.<br><br><button style='width:45px; height:18px; font-size:10px;' onClick='ocultaMensaje()' type='button'>Ok</button>";	
 				muestraMensaje(texto);
 			}
 		}
@@ -157,7 +157,6 @@ function validaForm()
 }
 
 // Mensajes de ayuda
-
 if(navigator.userAgent.indexOf("MSIE")>=0) navegador=0;
 else navegador=1;
 
@@ -206,7 +205,6 @@ function muestraAyuda(event, campo)
 		document.addEventListener("mousemove", colocaAyuda, true);
 		document.addEventListener("mouseout", ocultaAyuda, true);
 	}
-	
 	cNombre.innerHTML=campo;
 	cTex.innerHTML=ayuda[campo];
 	cAyuda.style.display="block";
