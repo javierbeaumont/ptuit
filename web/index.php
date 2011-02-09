@@ -10,8 +10,13 @@
 
     <div id="header">
       <img src="./image/logo.jpg" alt="Logo" />
+<<<<<<< HEAD
       <a href="registro.php">Registrarse</a> 
       <a href="login.php">Login</a> 
+=======
+      <a href="http://localhost/registro.php">Registrarse</a> 
+      <a href="http://localhost/login.php">Login</a> 
+>>>>>>> b2d72b9dd9bafa6bc647ef52001f1d9529b90610
     </div>
 
     <div id="content">
