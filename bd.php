@@ -63,33 +63,47 @@ private class bd{
 
     $db = conexionBd();
 
-    $consulta = "SELECT $campos FROM $tabla"; //poner la tabla deseada
+    $consulta = "SELECT $campos FROM $tabla"; 
     $result = $db->query($consulta);
     if (!$result) { print "<p>Error en la consulta.</p>\n";} 
     else {
+        print "<p>Consulta ejecutada.</p>\n";
 	foreach ($result as $valor) {
 	    print "<p>$valor[nombre] $valor[password]</p>\n";  //para comprobar, poner x campos
 	}
     }
-  
+    $db = NULL;
     /*$stmt->execute();    
     print "procedure returned $return_value\n";*/
 }
  
 
-  private function insert{
+  private function insert($campos){
+
+    $db = conectaDb();
+    $consulta = "INSERT INTO $tabla values (NULL, $campos)";
+    if ($db->query($consulta)) { print "<p>Registro creado correctamente.</p>\n"; }
+    else { print "<p>Error al crear el registro.<p>"; }
+    $db = NULL;
 
   }
 
-  private function delete{
+  private function delete($campos){
+    $db = conectaDb();
+    $consulta = "DELETE FROM $tabla WHERE id=$indice";
+    if ($db->query($consulta)) { print "<p>Registro borrado correctamente.</p>\n";} 
+    else { print "<p>Error al borrar el registro.</p>\n"; }
+    $db = NULL;
+}
 
-  }
+  private function update($campos){
 
-  private function update{
-
-  }
-
- 
+    $db = conectaDb();
+    $consulta = "UPDATE $tabla SET nombre=$nombre, apellidos=$apellidos, correo=$correo 
+                 WHERE id=$modificar";  //pasar $campos
+    if ($db->query($consulta)) { print "<p>Registro modificado correctamente.</p>\n"; } 
+    else {  print "<p>Error al modificar el registro.</p>\n"; }
+    $db = NULL;
 }
 
 
