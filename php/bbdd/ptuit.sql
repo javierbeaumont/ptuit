@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 09-02-2011 a las 09:34:44
+-- Tiempo de generación: 09-02-2011 a las 09:47:11
 -- Versión del servidor: 5.1.49
 -- Versión de PHP: 5.3.3-1ubuntu9.3
 
@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `mensaje` (
   `mensaje` char(160) COLLATE utf8_unicode_ci NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `usuario` int(11) NOT NULL,
+  `tipo` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
@@ -55,4 +56,5 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 -- Volcar la base de datos para la tabla `usuario`
 --
+
 
