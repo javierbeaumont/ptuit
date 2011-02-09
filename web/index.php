@@ -9,7 +9,7 @@
   <body>
 
     <div id="header">
-      <img src="./image/logo.jpg" alt="ptuit" />
+      <img src="./imagen/logo.png" alt="ptuit" />
       <a id="registro" href="http://localhost/registro.php">Registrarse</a>
       <a id="login" href="http://localhost/login.php">Login</a> 
     </div>
