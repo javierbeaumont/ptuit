@@ -53,7 +53,7 @@ function nuevoAjax()
 
 function limpiaForm()
 {
-	for(i=0; i<=4; i++)
+	for(i=0; i<=3; i++)
 	{
 		form.elements[i].className=claseNormal;
 	}
