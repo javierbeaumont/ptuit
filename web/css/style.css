@@ -3,7 +3,7 @@
 html {
   margin: 0;
   padding: 0;
-  background-color: black;
+  background-color: #051d2a;
   font-family: "Arial", "Helvetica", sans-serif;
 }
 
@@ -22,11 +22,9 @@ a {
   padding: 2px;
   font-size: 10pt;
   background-color: black;
-  border: 1px solid #FF8C00;
-  
+  border: 1px solid #FF8C00;  
   text-decoration: none;  
-  color: white;
-  
+  color: white;  
 }
 
 #header {
@@ -42,8 +40,7 @@ a {
   position: relative;
   float: left;
   left: 20px;
-  top: 7px;
-  
+  top: 7px;  
 }
 
 #content #marco {
