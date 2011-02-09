@@ -1,17 +1,20 @@
 <?php
-/**Incuir el archivo conexion a la Base de Datos*/
+//Incuir el archivo conexion a la Base de Datos
  include("conexion.php"); //incluir conexion
-
- /**Classe para controlar el logeo de usuarios*/
+/**
+@class controladorLogin  para controlar el logeo de usuarios*/
  class controladorLogin
    {
- 
+    /** @param $error que devuelve true o false segun la validación*/
+    /** @param $username que recoge el nick*/
+    /** @param $password que recoge el password*/
     public $error=false;
+    public $username = $_POST['nick']; 
+    public $password = $_POST['pass']; 
 
+   /** @fn ( validarLogin que busca en la base de datos por el nick del usuario y devuelve el id del mismo si todo a ido bien o la varia error=false)*/
     public function validarLogin()
     {
-	$username = $_POST['nick']; //recogo el nick
-	$password = $_POST['pass']; //recogo el password
 
 	$password = sha1($password); //Desencriptar;
 
@@ -26,15 +29,15 @@
 	    } 
 	    else
 	      {
-		$error = true; 
+		this.$error = true; 
 	    } 
 	else //si el nombre no se encuentra en BBDD
 	{
 	    
-	      return $error=true;  
+	      this.$error=true;  
 	}
       }
-      return $error; 
+      return this.$error; 
     }
 }
 ?>
