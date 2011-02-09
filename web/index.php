@@ -3,29 +3,23 @@
  
   <head>
      <title>Ptuit</title>
-     <link rel="stylesheet" href="./css/styles.css" type="text/css"/>
+     <link rel="stylesheet" href="./css/style.css" type="text/css"/>
   </head>
 
   <body>
 
     <div id="header">
-      <img src="./image/logo.jpg" alt="Logo" />
-<<<<<<< HEAD
-      <a href="registro.php">Registrarse</a> 
-      <a href="login.php">Login</a> 
-=======
-      <a href="http://localhost/registro.php">Registrarse</a> 
-      <a href="http://localhost/login.php">Login</a> 
->>>>>>> b2d72b9dd9bafa6bc647ef52001f1d9529b90610
+      <img src="./imagen/logo.png" alt="ptuit" />
+      <a id="registro" href="registro.php">Registrarse</a>
+      <a id="login" href="login.php">Login</a> 
     </div>
 
     <div id="content">
-
+      <div id="marco"></div>
     </div>
 
     <div id="footer">
-      <p>© Ptuit 2011 </p>
-
+      <div id=cc>Ptuit 2011 </div>
     </div>
   </body>
 </html>
