@@ -14,7 +14,7 @@ onload=function()
 	ayuda["Correo"]="Ingresa una dirección de correo electrónico válido.";
 	ayuda["Contraseña"]="Ingresa una contraseña de un mínimo de 8 caracteres.";
 	ayuda["Repetir Contraseña"]="Ingresa de nuevo la contraseña";
-	preCarga("ok.gif", "loading.gif", "error.gif");
+	preCarga("imagen/ok.gif", "imagen/loading.gif", "imagen/error.gif");
 }
  
 
@@ -126,12 +126,12 @@ function validaForm()
 	
 	if(error==1)
 	{
-		var texto="<img src='error.gif' alt='Error'><br><br>Error: revise los campos en rojo.<br><br><button style='width:45px; height:18px; font-size:10px;' onClick='ocultaMensaje()' type='button'>Ok</button>";
+		var texto="<img src='imagen/error.gif' alt='Error'><br><br>Error: revise los campos en rojo.<br><br><button style='width:45px; height:18px; font-size:10px;' onClick='ocultaMensaje()' type='button'>Ok</button>";
 		muestraMensaje(texto);
 	}
 	else
 	{
-		var texto="<img src='loading.gif' alt='Enviando'><br>Enviando. Por favor espere.<br><br><button style='width:60px; height:18px; font-size:10px;' onClick='ocultaMensaje()' type='button'>Ocultar</button>";
+		var texto="<img src='imagen/loading.gif' alt='Enviando'><br>Enviando. Por favor espere.<br><br><button style='width:60px; height:18px; font-size:10px;' onClick='ocultaMensaje()' type='button'>Ocultar</button>";
 		muestraMensaje(texto);
 		
 		var ajax=nuevoAjax();

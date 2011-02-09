@@ -5,10 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <title>Formulario de contacto en AJAX</title>
 <link rel="stylesheet" type="text/css" href="estilos.css">
-<script src="jquery.js" type="text/javascript"></script>
-<script src="jquery.validate.js" type="text/javascript"></script>
 
-<script type="text/javascript" src="funciones.js"></script>
+<script type="text/javascript" src="js/validaciones.js"></script>
 
 
 
@@ -26,22 +24,22 @@
 				<tr>
 					<td class="label"><label id="lusuario" for="inputUser">Nombre:</label></td>
 					<td class="campo"><input class="inputNormal" type="text" id="inputUser" ></td>
-					<td class="ayuda"><img src="ayuda.gif" alt="Ayuda" onmouseover="muestraAyuda(event, 'Nombre Usuario')"></td>
+					<td class="ayuda"><img src="imagen/ayuda.gif" alt="Ayuda" onmouseover="muestraAyuda(event, 'Nombre Usuario')"></td>
 				</tr>
 				<tr>
 					<td class="label">Correo electrónico:</td>
 					<td class="campo"><input class="inputNormal" type="text" id="inputCorreo"></td>
-					<td class="ayuda"><img src="ayuda.gif" alt="Ayuda" onmouseover="muestraAyuda(event, 'Correo')"></td>
+					<td class="ayuda"><img src="imagen/ayuda.gif" alt="Ayuda" onmouseover="muestraAyuda(event, 'Correo')"></td>
 				</tr>
 				<tr>
 					<td class="label">Contraseña:</td>
 					<td class="campo"><input class="inputNormal" type="text" id="inputPass"></td>
-					<td class="ayuda"><img src="ayuda.gif" alt="Ayuda" onmouseover="muestraAyuda(event, 'Contraseña')"></td>
+					<td class="ayuda"><img src="imagen/ayuda.gif" alt="Ayuda" onmouseover="muestraAyuda(event, 'Contraseña')"></td>
 				</tr>
 				<tr>
 					<td class="label">Repetir contraseña:</td>
 					<td class="campo"><input class="inputNormal" type="text" id="inputRpass"></td>
-					<td class="ayuda"><img src="ayuda.gif" alt="Ayuda" onmouseover="muestraAyuda(event, 'Repetir Contraseña')"></td>
+					<td class="ayuda"><img src="imagen/ayuda.gif" alt="Ayuda" onmouseover="muestraAyuda(event, 'Repetir Contraseña')"></td>
 				</tr>
 			</tbody>
 		</table>
