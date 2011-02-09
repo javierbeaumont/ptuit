@@ -16,10 +16,17 @@ body {
 
 a {
   position: relative;
-  clear: both;
+  top: 10px;
+  right: 5px;
+  float: right;
+  padding: 2px;
+  font-size: 10pt;
+  background-color: black;
+  border: 1px solid #FF8C00;
+  
   text-decoration: none;  
   color: white;
-  margin-left: 300px;
+  
 }
 
 #header {
