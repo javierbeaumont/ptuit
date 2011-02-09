@@ -4,8 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta http-equiv="content-style-type" content="text/css">
     <title>Editar perfil</title>
-		<script type="text/javascript" src="js/jquery.js"></script>
-	</head>
+  </head>
   <body>
 		<h1>Tus datos actuales son:</h1>
 		<ul>
@@ -15,18 +14,7 @@
 			<li>Nº de mensajes escritos:</li>
 		</ul>
 		<h2>Introduce tus nuevos datos</h2>
-		<?php  
-				echo "<form>";
-					require('registro.php');
-				echo "</form>";
-		?>
-		
-		
-		<script>
-			$("h2").click(function () {
-			$("form").toggle("500");
-			});    
-		</script>
+		<?php require('registro.php'); ?>
 
   </body>
 </html>
