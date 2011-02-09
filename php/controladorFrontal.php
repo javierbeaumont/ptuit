@@ -34,15 +34,27 @@
  */
 class controladorFrontal {
 
-    public function __construct() {
+    private $rutaClases;
+    private $rutaPaginas;
+    private $rutaControlF;
 
+    public function __construct() {
+        $rutaClases = $_SERVER['DOCUMENT_ROOT'] . '/php/clases/';
+        $rutaPaginas = $_SERVER['DOCUMENT_ROOT'] . '/web/';
+        $rutaControlF = $_SERVER['DOCUMENT_ROOT'] . '/php/';
     }
 
     public static function arranca() {
-        if (isset($_GET['$controlador'])) {
-            $controlador = $_GET['$controlador'];
+
+        include_once ($rutaClases . 'Sesiones.php');
+        if (isset($_GET['controlador'])) {
+            $controlador = $_GET['controlador'];
         } else {
-            $controlador = 'indexControl';
+            if (isset($_POST['controlador'])) {
+                $controlador = $_POST['controlador'];
+            } else {
+                $controlador = 'indexControl';
+            }
         }
         if (isset($_GET['accion'])) {
             $accion = $_GET['accion'] . "Accion";
@@ -50,8 +62,14 @@ class controladorFrontal {
             $accion = 'indexAccion';
         }
 
+        $sesiones = new Sesiones();
+        if (!$sesiones->existeSesion()) {
+            $controlador = 'indexControl';
+            $accion = 'indexAccion';
+        }
 
-        $rutaControlador = $_SERVER['DOCUMENT_ROOT'] . '/php/clases/' . $controlador . '.php';
+
+        $rutaControlador = $rutaClases . $controlador . '.php';
 
         if (file_exists($rutaControlador)) {
             include_once( $rutaControlador );
@@ -75,8 +93,8 @@ class controladorFrontal {
         if (isset($datosSalida['pagina'])) {
             $rutapagina = $_SERVER['DOCUMENT_ROOT'] . '/web/' . $datosSalida['pagina'];
             if (isset($datosSalida['datos'])) {
-                $datos=$datosSalida["datos"];
-                echo '<?php  '.$datos.'  ?>';
+                $datos = $datosSalida["datos"];
+                echo '<?php  ' . $datos . '  ?>';
             }
             if (file_exists($rutapagina)) {
                 include_once($rutapagina );
@@ -87,4 +105,5 @@ class controladorFrontal {
     }
 
 }
+
 ?>
