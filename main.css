@@ -12,6 +12,11 @@ body {
    margin: 0 auto;
    width: 700px;
 }
+
+img{
+   border: 0px;
+}
+
 h1 { 
    font-size: 3.8em; 
    color: #a3be74; 
@@ -48,7 +53,7 @@ a {
    float: right; 
 }
 
-pre { 
+code { 
    background: #000; 
    color: #fff; 
    padding: 15px;
@@ -64,5 +69,4 @@ hr {
    text-align:center; 
    padding-top:30px; 
    font-style: italic; 
-}
-	
+}	
