@@ -1,16 +1,22 @@
-Crear el diseño de la página principal de la apliación. 
-Realizar el logo de la aplicación. 
-Mostrar en la página principal de la aplicación los últimos mensajes. 
-Realizar el diseño de la página para crear un nuevo usuario. 
-Comprobar que el usuario, la contraseña y el email introducidos son válidos cuando un usuario crea su cuenta. 
-Realizar el diseño de la página de iniciar sesión para que el usuario pueda acceder a su página personal. 
-Comprobar que el usuario y la contraseña introducidas son correctas con respecto a los datos de la base de datos. 
-Mostrar error en caso de que la comprobación del usuario y la contarseña no sean correctos y realizar una nueva petición usuario y contraseña. 
-Diseñar la página personal de usuario. 
-Realizar el control de sesiones de los usuarios. 
-Mostrar los mensajes del usuario. 
-Comprobar que los mensajes escritos son correctos. 
-Crear la base de datos. 
-PDO, definir la interfaz para el acceso a bases de datos. 
-Escribir la documentación del proyecto.
+    * Crear el diseño la página principal de la aplicación.
+    * (_Andrés) Realizar el logo de la aplicación.
+    * Mostrar en la página principal de la aplicación los últimos mensajes.
+    * Realizar el diseño de la página para crear un nuevo usuario.
+    * (Antonio) Comprobar que el usuario, la contraseña y el email introducidos son válidos cuando un usuario crea su cuenta.
+    * (JoseManuel)Realizar el diseño de la página de iniciar sesión para que el usuario pueda acceder a su página personal.
+    * (begodc) Comprobar que el usuario y la contraseña introducidas son correctas con respecto a los datos de la base de datos.
+    * (JoseManuel)Mostrar error en caso de que la comprobación del usuario y la contraseña no sean correctos y realizar una nueva petición usuario y contraseña.
+    * _MKN gh-pages.
+    * Diseñar la página personal de usuario.
+    * (Werner) Realizar el control de sesiones de los usuarios.
+    * Mostrar los mensajes del usuario.
+    * Comprobar que los mensajes escritos son correctos.
+    * (Estitxu)Crear la base de datos.
+    * Gemma: PDO, definir la interfaz para el acceso a bbdd (select, insert, upadate y delete), funcion regoger datos y conexion.
+    * (Jordan) Escribir la documentación del proyecto.
+    * ¿Etiquetas en los mensajes?
+    * ¿Tabla de datos de usuario?
+    * (Naroa)Crear archivo en el que conste si hay mensajes nuevos en la BBDD y en caso afirmativo que muestre id, usuario, fecha y texto de el/los mensaje/s nuevo/s
+
+
 
