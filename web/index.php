@@ -3,7 +3,7 @@
  
   <head>
      <title>Ptuit</title>
-     <link rel="stylesheet" href="./style/styles.css" type="text/css"/>
+     <link rel="stylesheet" href="./css/styles.css" type="text/css"/>
   </head>
 
   <body>
