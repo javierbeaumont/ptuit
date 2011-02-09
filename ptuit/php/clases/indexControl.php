@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+<?php
+/*
     Copyright (C) <2011>  <rubentxu>
 
     This program is free software: you can redistribute it and/or modify
@@ -15,16 +15,26 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
--->
+*/
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" >
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>Ptuit</title>
-    </head>
-    <body>
-       
-    </body>
-</html>
+/**
+ * Descripcion indexControl: este archivo sera llamado por el controlador frontal.
+ * se debe retornar un array que incluya los datos "pagina" y "datos"
+ * (datos puede ser otro array que incluya todo los datos variables  de la pagina.
+ *
+ * @author rubentxu
+ */
+class indexControl {
 
+    public function indexAccion(){
+
+        return  array ("pagina"=>"holamundo.php","datos"=>"Hola Tio");
+        
+    }
+    public function cajaAccion(){
+        return array("pagina"=>"cajaMensajes.php","datos"=>"Escribe algo aqui....");
+    }
+
+    
+}
+?>

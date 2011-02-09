@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!--
     Copyright (C) <2011>  <rubentxu>
 
@@ -16,15 +15,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" >
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>Ptuit</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title></title>
     </head>
     <body>
-       
+         ESTO FUNCIONA <?php echo $datos ?>
+         <a href="index.php?controlador=mensaje&accion=caja">caja mensaje</a>
+        
     </body>
 </html>
-
