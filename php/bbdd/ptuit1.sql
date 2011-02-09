@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 09-02-2011 a las 09:47:11
+-- Tiempo de generación: 09-02-2011 a las 17:04:41
 -- Versión del servidor: 5.1.49
 -- Versión de PHP: 5.3.3-1ubuntu9.3
 
@@ -25,6 +25,8 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Estructura de tabla para la tabla `mensaje`
 --
 
+CREATE DATABASE 'ptuit';
+
 CREATE TABLE IF NOT EXISTS `mensaje` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mensaje` char(160) COLLATE utf8_unicode_ci NOT NULL,
@@ -36,6 +38,23 @@ CREATE TABLE IF NOT EXISTS `mensaje` (
 
 --
 -- Volcar la base de datos para la tabla `mensaje`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `seguirusuario`
+--
+
+CREATE TABLE IF NOT EXISTS `seguirusuario` (
+  `idseguido` int(11) NOT NULL,
+  `idseguidor` int(11) NOT NULL,
+  PRIMARY KEY (`idseguido`,`idseguidor`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcar la base de datos para la tabla `seguirusuario`
 --
 
 
@@ -56,5 +75,4 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 -- Volcar la base de datos para la tabla `usuario`
 --
-
 
