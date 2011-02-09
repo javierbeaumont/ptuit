@@ -31,6 +31,14 @@ a {
   height: 200px;  
 }
 
+#header img {
+  position: relative;
+  float: left;
+  left: 20px;
+  top: 7px;
+  
+}
+
 #content #marco {
   position: relative;
   z-index: 1;
