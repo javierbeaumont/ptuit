@@ -137,7 +137,7 @@ function validaForm()
 		var ajax=nuevoAjax();
 		ajax.open("POST", urlDestino, true);
 		ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		ajax.send("InputUser="+InputUser);
+		ajax.send("inputUser="+inputUser);
 		
 		ajax.onreadystatechange=function()
 		{
