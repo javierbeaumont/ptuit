@@ -1,5 +1,5 @@
 <?php
-include "../../web/conf.php";
+include "../web/conf.php";
 
 class bd{
 
