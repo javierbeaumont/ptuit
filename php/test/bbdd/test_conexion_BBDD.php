@@ -22,6 +22,7 @@
  * Test conexión base de datos
  */
 
+include("../../../web/conf.php");
 include("../../bbdd/bd.php");
 
 class otra extends bd {
