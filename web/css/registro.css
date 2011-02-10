@@ -1,34 +1,26 @@
-#formContenedor 
-{
-	text-align:center;
+#formContenedor {
+	text-align:left;
 	position:absolute;
-	width:400px;
 	left:50%;
 	margin-left:-200px;
 }
 
-table { width:400px; }
+#formContenedor input{
 
-input 
-{
-	width:220px;
-	font-family:Verdana, Arial, Helvetica, sans-serif;
-	font-size:13px;
-	border:1px solid;
+	float: right;
+
 }
 
-textarea
-{
+input {
 	width:220px;
-	height:100px;
-	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-family: "Verdana", "Arial", "Helvetica", sans-serif;
 	font-size:13px;
 	border:1px solid;
 }
 
 button { width:100px; height:22px; font-family:Verdana; font-size:11px; }
 
-.label { width:110px; text-align:left; }
+label { width:110px; text-align:left; }
 
 .campo { width:240px; }
 
@@ -36,8 +28,7 @@ button { width:100px; height:22px; font-family:Verdana; font-size:11px; }
 
 .inputNormal { border:1px solid; }
 
-.inputError
-{
+.inputError {
 	border:1px solid #FF0000;
 	background-color:#FFF4F0;
 	color:#FF0000;
@@ -45,19 +36,18 @@ button { width:100px; height:22px; font-family:Verdana; font-size:11px; }
 
 /* Capas de transparencia y mensajes de confirmacion */
 
-#transparencia
-{
+#transparencia {
 	background-color:#FFFFFF; 
 	z-index:1; 
 	position:absolute;
 	width:400px;
 	height:260px;
 	display:none;
-	opacity:0.95; filter:alpha(opacity="95");
+	opacity:0.95; 
+	filter: alpha(opacity="95");
 }
 
-#transparenciaMensaje
-{
+#transparenciaMensaje {
 	position:absolute;
 	width:300px;
 	height:100px;
@@ -69,8 +59,7 @@ button { width:100px; height:22px; font-family:Verdana; font-size:11px; }
 
 /* Mensajes de ayuda */
 
-#mensajesAyuda
-{
+#mensajesAyuda {
 	width:160px;
 	font-family:Verdana;
 	font-size:10px;
@@ -82,15 +71,13 @@ button { width:100px; height:22px; font-family:Verdana; font-size:11px; }
 	text-align:center;
 }
 
-#ayudaTitulo
-{
+#ayudaTitulo {
 	background-color:#000000; 
 	color:#FFFFFF; 
 	padding:1px;
 }
 
-#ayudaTexto
-{
+#ayudaTexto {
 	vertical-align:middle;
 	padding:2px;
 }
