@@ -3,13 +3,13 @@ include "../web/conf.php";
 
 class bd{
 
-  private function conexionBd(){   //crea la conexion con la BD
+  protected function conexionBd(){   //crea la conexion con la BD
     try {
         $db = new PDO('mysql:host='.DB_HOST, DB_USER, DB_PASSWORD);
         $db->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, TRUE);
         return($db);
     } catch (PDOException $e) {
-        cabecera('Error grave');
+        print($e);
         print "<p>Error: No puede conectarse con la BD.</p>\n";
         //  print "<p>Error: " . $e->getMessage() . "</p>\n";
         //pie();
@@ -18,11 +18,11 @@ class bd{
     $db = conexionBd();
   }
 
-  private function desconexionBd() {   //desconecta la BD por seguridad
+  protected function desconexionBd() {   //desconecta la BD por seguridad
    $db = NULL; 
   }
 
-  private function recogerPrepararDatosSelect($tabla,$array){   //con prepare recojo datos en vble array y le quito comas/comillas... etc.
+  protected function recogerPrepararDatosSelect($tabla,$array){   //con prepare recojo datos en vble array y le quito comas/comillas... etc.
 
     for ($i=0; $i<count($array); $i++)       
     {       
@@ -35,7 +35,7 @@ class bd{
     return $arrayPreparedSelect;    
 }
 
- private function recogerPrepararDatosWhere($tabla,$array){ 
+ protected function recogerPrepararDatosWhere($tabla,$array){ 
  
     for ($i=0; $i<count($array); $i++)       
     { if ($array[1]==null and $tabla=="usuario") $i++;       
@@ -47,7 +47,7 @@ class bd{
     return $arrayPreparedWhere; 
  }
 
- private function recogerPrepararDatos_campoValor($tabla,$array){    
+ protected function recogerPrepararDatos_campoValor($tabla,$array){    
 
     //preparo los valores introducidos sin comas...
     for ($i=0; $i<count($array); $i++)       
@@ -65,11 +65,11 @@ class bd{
 
 //********************************* funciones select, update, insert y delete ****************************
   
-  private function select($tabla,$array){   
+  protected function select($tabla,$arraySelect,$arrayWhere){   
 
     $db = conexionBd();
-    $arrayPreparedSelect=recogerPrepararDatosSelect($tabla,$array);  
-    $arrayPreparedWhere=recogerPrepararDatosWhere($tabla,$array); 
+    $arrayPreparedSelect=recogerPrepararDatosSelect($tabla,$arraySelect);  
+    $arrayPreparedWhere=recogerPrepararDatosWhere($tabla,$arrayWhere); 
    
     $consulta = $db->prepare("SELECT $arrayPreparedSelect FROM $tabla WHERE $arrayPreparedWhere");
    
@@ -88,12 +88,12 @@ class bd{
     $db = NULL;    
    
   } 
-  private function update($tabla){    
+  protected function update($tabla,$arraySet,$arrayWhere){    
 
     $db = conectaDb();
     //$arrayPreparedSelect=recogerPrepararDatosSelect();
-    $arrayPreparedWhere=recogerPrepararDatosWhere($tabla,$array); 
-    $arrayPreparedSet=recogerPrepararDatos_campoValor($tabla,$array);   
+    $arrayPreparedWhere=recogerPrepararDatosWhere($tabla,$arrayWhere); 
+    $arrayPreparedSet=recogerPrepararDatos_campoValor($tabla,$arraySet);   
 
     $consulta = $db->prepare("UPDATE $tabla SET $arrayPreparedSet WHERE $arrayPreparedWhere");
      
@@ -108,10 +108,10 @@ class bd{
     $db = NULL;
    }
 
-   private function insert($tabla){     
+   protected function insert($tabla,$array){     
 
     $db = conectaDb();
-    $arrayPrepared=recogerPrepararDatosSelect($tabla,$array);
+    //$arrayPrepared=recogerPrepararDatosSelect($tabla,$array);
     $arrayPreparedInsert=recogerPrepararDatos_campoValor($tabla,$array);   
    
     $consulta = $db->prepare("INSERT INTO $tabla VALUES ($arrayPreparedInsert)");
@@ -127,9 +127,9 @@ class bd{
     $db = NULL;
    }
 
-  private function delete($tabla){   
+  protected function delete($tabla,$arrayWhere){   
     $db = conectaDb();
-    $arrayPreparedWhere=recogerPrepararDatosWhere($tabla,$array); 
+    $arrayPreparedWhere=recogerPrepararDatosWhere($tabla,$arrayWhere); 
 
     $consulta = "DELETE FROM $tabla WHERE $arrayPreparedWhere";
     if ($db->query($consulta)) { 
