@@ -1,5 +1,4 @@
 <?php
-include "../../web/conf.php";
 
 # ptuit
 #
