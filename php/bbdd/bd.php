@@ -1,7 +1,9 @@
 <?php
-include "../web/conf.php";
+include "../../web/conf.php";
 
 class bd{
+
+  protected $bd;
 
   protected function conexionBd(){   //crea la conexion con la BD
     try {
@@ -68,8 +70,8 @@ class bd{
   protected function select($tabla,$arraySelect,$arrayWhere){   
 
     $db = conexionBd();
-    $arrayPreparedSelect=recogerPrepararDatosSelect($tabla,$arraySelect);  
-    $arrayPreparedWhere=recogerPrepararDatosWhere($tabla,$arrayWhere); 
+    $arrayPreparedSelect=$this->recogerPrepararDatosSelect($tabla,$arraySelect);  
+    $arrayPreparedWhere=$this->recogerPrepararDatosWhere($tabla,$arrayWhere); 
    
     $consulta = $db->prepare("SELECT $arrayPreparedSelect FROM $tabla WHERE $arrayPreparedWhere");
    
@@ -92,8 +94,8 @@ class bd{
 
     $db = conectaDb();
     //$arrayPreparedSelect=recogerPrepararDatosSelect();
-    $arrayPreparedWhere=recogerPrepararDatosWhere($tabla,$arrayWhere); 
-    $arrayPreparedSet=recogerPrepararDatos_campoValor($tabla,$arraySet);   
+    $arrayPreparedWhere=$this->recogerPrepararDatosWhere($tabla,$arrayWhere); 
+    $arrayPreparedSet=$this->recogerPrepararDatos_campoValor($tabla,$arraySet);   
 
     $consulta = $db->prepare("UPDATE $tabla SET $arrayPreparedSet WHERE $arrayPreparedWhere");
      
@@ -112,7 +114,7 @@ class bd{
 
     $db = conectaDb();
     //$arrayPrepared=recogerPrepararDatosSelect($tabla,$array);
-    $arrayPreparedInsert=recogerPrepararDatos_campoValor($tabla,$array);   
+    $arrayPreparedInsert=$this->recogerPrepararDatos_campoValor($tabla,$array);   
    
     $consulta = $db->prepare("INSERT INTO $tabla VALUES ($arrayPreparedInsert)");
  
@@ -129,7 +131,7 @@ class bd{
 
   protected function delete($tabla,$arrayWhere){   
     $db = conectaDb();
-    $arrayPreparedWhere=recogerPrepararDatosWhere($tabla,$arrayWhere); 
+    $arrayPreparedWhere=$this->recogerPrepararDatosWhere($tabla,$arrayWhere); 
 
     $consulta = "DELETE FROM $tabla WHERE $arrayPreparedWhere";
     if ($db->query($consulta)) { 
