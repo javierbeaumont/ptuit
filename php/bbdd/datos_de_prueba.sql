@@ -61,10 +61,28 @@ INSERT INTO `seguirusuario` (idseguido, idseguidor)
 VALUES ("1","3");
 
 INSERT INTO `seguirusuario` (idseguido, idseguidor)
-VALUES ("2","4");
+VALUES ("1","4");
 
 INSERT INTO `seguirusuario` (idseguido, idseguidor)
-VALUES ("4","5");
+VALUES ("1","5");
+
+INSERT INTO `seguirusuario` (idseguido, idseguidor)
+VALUES ("2","6");
+
+INSERT INTO `seguirusuario` (idseguido, idseguidor)
+VALUES ("3","5");
+
+INSERT INTO `seguirusuario` (idseguido, idseguidor)
+VALUES ("3","4");
+
+INSERT INTO `seguirusuario` (idseguido, idseguidor)
+VALUES ("4","3");
+
+INSERT INTO `seguirusuario` (idseguido, idseguidor)
+VALUES ("4","2");
+
+INSERT INTO `seguirusuario` (idseguido, idseguidor)
+VALUES ("5","1");
 
 ALTER TABLE seguirusuario ADD FOREIGN KEY (idseguido) REFERENCES usuario (id);
 ALTER TABLE seguirusuario ADD FOREIGN KEY (idseguidor) REFERENCES usuario (id);
