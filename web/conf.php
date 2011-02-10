@@ -5,10 +5,10 @@
 define('DB_NAME', 'ptuit');
 
 /** MySQL database username */
-define('DB_USER', 'ptuit');
+define('DB_USER', 'root');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'ptuit');
+define('DB_PASSWORD', 'pass');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
