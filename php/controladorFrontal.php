@@ -39,37 +39,39 @@ class controladorFrontal {
     private $rutaControlF;
 
     public function __construct() {
-        $rutaClases = $_SERVER['DOCUMENT_ROOT'] . '/php/clases/';
-        $rutaPaginas = $_SERVER['DOCUMENT_ROOT'] . '/web/';
-        $rutaControlF = $_SERVER['DOCUMENT_ROOT'] . '/php/';
+        
     }
 
     public static function arranca() {
 
-        include_once ($rutaClases . 'Sesiones.php');
+        $rutaClases = $_SERVER['DOCUMENT_ROOT'] . '/php/clases/';
+        $rutaPaginas = $_SERVER['DOCUMENT_ROOT'] . '/web/';
+        $rutaControlF = $_SERVER['DOCUMENT_ROOT'] . '/php/';
+
+        include_once ($rutaClases . 'sesiones.php');
         if (isset($_GET['controlador'])) {
             $controlador = $_GET['controlador'];
         } else {
             if (isset($_POST['controlador'])) {
                 $controlador = $_POST['controlador'];
             } else {
-                $controlador = 'indexControl';
+                $controlador = 'index';
             }
         }
         if (isset($_GET['accion'])) {
-            $accion = $_GET['accion'] . "Accion";
+            $accion = $_GET['accion'] ;
         } else {
-            $accion = 'indexAccion';
+            $accion = 'index';
         }
 
-        $sesiones = new Sesiones();
-        if (!$sesiones->existeSesion()) {
-            $controlador = 'indexControl';
-            $accion = 'indexAccion';
-        }
+//        $sesiones = new Sesiones();
+//        if (!$sesiones->existeSesion()) {
+//            $controlador = 'indexControl';
+//            $accion = 'index';
+//        }
+        $controlador=$controlador . 'Control';
 
-
-        $rutaControlador = $rutaClases . $controlador . '.php';
+        $rutaControlador = $rutaClases . $controlador.'.php';
 
         if (file_exists($rutaControlador)) {
             include_once( $rutaControlador );
@@ -86,7 +88,7 @@ class controladorFrontal {
         if (method_exists($cont, $accion)) {
             $datosSalida = $cont->$accion();
         } else {
-            throw new Exception("No se encuentra la accion: $accion");
+            throw new Exception("No se encuentra la accion: $accion en controlador $controlador");
         }
 
 
