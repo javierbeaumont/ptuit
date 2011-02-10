@@ -43,5 +43,26 @@ INSERT INTO `mensaje` (id,mensaje,fecha,usuario,tipo)
 VALUES ("6","Mensaje 6","20110209","6","");
 
 
+
+INSERT INTO `seguirusuario` (idseguido, idseguidor)
+VALUES ("6","5");
+
+INSERT INTO `seguirusuario` (idseguido, idseguidor)
+VALUES ("6","4");
+
+INSERT INTO `seguirusuario` (idseguido, idseguidor)
+VALUES ("6","1");
+
+INSERT INTO `seguirusuario` (idseguido, idseguidor)
+VALUES ("1","3");
+
+INSERT INTO `seguirusuario` (idseguido, idseguidor)
+VALUES ("2","4");
+
+INSERT INTO `seguirusuario` (idseguido, idseguidor)
+VALUES ("4","5");
+
+
 select * from usuario;
 select * from mensaje;
+select * from seguirusuario;

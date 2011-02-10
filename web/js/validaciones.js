@@ -209,3 +209,4 @@ function muestraAyuda(event, campo)
 	cTex.innerHTML=ayuda[campo];
 	cAyuda.style.display="block";
 }
+
