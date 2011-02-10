@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `mensaje` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mensaje` char(160) COLLATE utf8_unicode_ci NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `usuario` int(11) NOT NULL,
+  `usuario` mediumint(9) NOT NULL,
   `tipo` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
@@ -48,8 +48,8 @@ CREATE TABLE IF NOT EXISTS `mensaje` (
 --
 
 CREATE TABLE IF NOT EXISTS `seguirusuario` (
-  `idseguido` int(11) NOT NULL,
-  `idseguidor` int(11) NOT NULL,
+  `idseguido` mediumint(9) NOT NULL,
+  `idseguidor` mediumint(9) NOT NULL,
   PRIMARY KEY (`idseguido`,`idseguidor`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
