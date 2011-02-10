@@ -39,8 +39,7 @@ function validar_email($email)
 
 
 /**
-*
-*
+*	Check the length of the password submitted
 *
 */
 function validar_clave($clave,&$error_clave){
