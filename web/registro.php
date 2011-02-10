@@ -12,38 +12,28 @@
 		    <div id="transparencia">
 		  	  <div id="transparenciaMensaje">Caja transparente</div>
 	    	</div>
-		  <table>
-			  <tbody>
-		  		<tr>
-			  		<td class="label"><label id="lusuario" for="inputUser">Nombre:</label></td>
-		  			<td class="campo"><input class="inputNormal" type="text" id="inputUser" /></td>
-			  		<td class="ayuda"><img src="imagen/ayuda.gif" alt="Ayuda" onmouseover="muestraAyuda(event, 'Nombre Usuario')" /></td>
-		  		</tr>
-			   	<tr>
-				  	<td class="label">Correo electrónico:</td>
-				  	<td class="campo"><input class="inputNormal" type="text" id="inputCorreo" /></td>
-			  		<td class="ayuda"><img src="imagen/ayuda.gif" alt="Ayuda" onmouseover="muestraAyuda(event, 'Correo')" /></td>
-			  	</tr>
-			  	<tr>
-				  	<td class="label">Contraseña:</td>
-			  		<td class="campo"><input class="inputNormal" type="password" id="inputPass" /></td>
-			  		<td class="ayuda"><img src="imagen/ayuda.gif" alt="Ayuda" onmouseover="muestraAyuda(event, 'Contraseña')" /></td>
-			  	</tr>
-			  	<tr>
-			  		<td class="label">Repetir contraseña:</td>
-			  		<td class="campo"><input class="inputNormal" type="password" id="inputRpass" /></td>
-			  		<td class="ayuda"><img src="imagen/ayuda.gif" alt="Ayuda" onmouseover="muestraAyuda(event, 'Repetir Contraseña')" /></td>
-			  	</tr>
-		  	</tbody>
-	  	</table>
-		  <div>
-			  <button id="botonEnviar" onclick="validaForm()" type="button">Enviar</button>
-			  <button type="reset">Borrar</button>
-		  </div>
+	    	<fieldset>
+   			  <legend>Datos de registro</legend>
+  	  		<label id="lusuario" for="inputUser">Nombre:</label>
+		  		<input class="inputNormal" type="text" id="inputUser" />
+			  	<img src="imagen/ayuda.gif" alt="Ayuda" onmouseover="muestraAyuda(event, 'Nombre Usuario')" /><br />
+  	  		<label id="lcorreo" for="inputCorreo">Correo electrónico:</label>
+				  <input class="inputNormal" type="text" id="inputCorreo" />
+			  	<img src="imagen/ayuda.gif" alt="Ayuda" onmouseover="muestraAyuda(event, 'Correo')" /><br />
+  	  		<label id="lpass" for="inputPass">Contraseña:</label>
+			  	<input class="inputNormal" type="password" id="inputPass" />
+			  	<img src="imagen/ayuda.gif" alt="Ayuda" onmouseover="muestraAyuda(event, 'Contraseña')" /><br />
+  	  		<label id="lrpass" for="inputRpass">Repetir contraseña:</label>
+			  	<input class="inputNormal" type="password" id="inputRpass" />
+			  	<img src="imagen/ayuda.gif" alt="Ayuda" onmouseover="muestraAyuda(event, 'Repetir Contraseña')" /><br />
+			  </fieldset>		
+		    <div>
+			    <button id="botonEnviar" onclick="validaForm()" type="button">Enviar</button>
+			    <button type="reset">Borrar</button>
+		    </div>
 	    </form>
     </div>
-
-<!-- Capa para mostrar los mensajes de ayuda al presionar los iconos correspondientes -->
+    <!-- Capa para mostrar los mensajes de ayuda al presionar los iconos correspondientes -->
     <div id="mensajesAyuda">
   	  <div id="ayudaTitulo"></div>
   	  <div id="ayudaTexto"></div>
