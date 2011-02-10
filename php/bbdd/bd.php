@@ -65,20 +65,24 @@ class bd{
 
 //********************************* funciones select, update, insert y delete ****************************
   
-  private function select($tabla){   
+  private function select($tabla,$array){   
 
     $db = conexionBd();
-    $arrayPreparedSelect=recogerPrepararDatosSelect();  
-    $arrayPreparedWhere=recogerPrepararDatosWhere(); 
+    $arrayPreparedSelect=recogerPrepararDatosSelect($tabla,$array);  
+    $arrayPreparedWhere=recogerPrepararDatosWhere($tabla,$array); 
    
     $consulta = $db->prepare("SELECT $arrayPreparedSelect FROM $tabla WHERE $arrayPreparedWhere");
    
     $result = $db->query($consulta);
-    if (!$result) { print "<p>Error en la consulta.</p>\n";} 
+    if (!$result) { 
+        print "<p>Error en la consulta.</p>\n"; 
+        return false;
+    } 
     else {
           print "<p>Consulta ejecutada.</p>\n";
           foreach ($result as $valor) {
 	    print "<p>$valor</p>\n";  //para comprobar, poner x campos
+	  return true;
 	}
     }
     $db = NULL;    
@@ -88,36 +92,53 @@ class bd{
 
     $db = conectaDb();
     //$arrayPreparedSelect=recogerPrepararDatosSelect();
-    $arrayPreparedWhere=recogerPrepararDatosWhere(); 
-    $arrayPreparedSet=recogerPrepararDatos_campoValor();   
+    $arrayPreparedWhere=recogerPrepararDatosWhere($tabla,$array); 
+    $arrayPreparedSet=recogerPrepararDatos_campoValor($tabla,$array);   
 
     $consulta = $db->prepare("UPDATE $tabla SET $arrayPreparedSet WHERE $arrayPreparedWhere");
      
-    if ($db->query($consulta)) { print "<p>Registro modificado correctamente.</p>\n"; } 
-    else {  print "<p>Error al modificar el registro.</p>\n"; }
+    if ($db->query($consulta)) {
+       print "<p>Registro modificado correctamente.</p>\n"; 
+       return true;
+    } 
+    else {  
+       print "<p>Error al modificar el registro.</p>\n"; 
+       return false;
+    }
     $db = NULL;
    }
 
    private function insert($tabla){     
 
     $db = conectaDb();
-    $arrayPrepared=recogerPrepararDatosSelect();
-    $arrayPreparedInsert=recogerPrepararDatos_campoValor();   
+    $arrayPrepared=recogerPrepararDatosSelect($tabla,$array);
+    $arrayPreparedInsert=recogerPrepararDatos_campoValor($tabla,$array);   
    
     $consulta = $db->prepare("INSERT INTO $tabla VALUES ($arrayPreparedInsert)");
  
-    if ($db->query($consulta)) { print "<p>Registro creado correctamente.</p>\n"; }
-    else { print "<p>Error al crear el registro.<p>"; }
+    if ($db->query($consulta)) { 
+       print "<p>Registro creado correctamente.</p>\n"; 
+       return true;
+    }
+    else { 
+       print "<p>Error al crear el registro.<p>"; 
+       return false;
+    }
     $db = NULL;
    }
 
   private function delete($tabla){   
     $db = conectaDb();
-    $arrayPreparedWhere=recogerPrepararDatosWhere(); 
+    $arrayPreparedWhere=recogerPrepararDatosWhere($tabla,$array); 
 
     $consulta = "DELETE FROM $tabla WHERE $arrayPreparedWhere";
-    if ($db->query($consulta)) { print "<p>Registro borrado correctamente.</p>\n";} 
-    else { print "<p>Error al borrar el registro.</p>\n"; }
+    if ($db->query($consulta)) { 
+        print "<p>Registro borrado correctamente.</p>\n";
+        return true;
+    } 
+    else { 
+        print "<p>Error al borrar el registro.</p>\n"; 
+        return false;}
     $db = NULL;
   }
 }
