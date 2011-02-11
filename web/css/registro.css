@@ -1,14 +1,7 @@
 #formContenedor {
-	text-align:left;
+	text-align:right;
 	position:absolute;
-	left:50%;
-	margin-left:-200px;
-}
-
-#formContenedor input{
-
-	float: right;
-
+  width: 440px;
 }
 
 input {
@@ -18,9 +11,18 @@ input {
 	border:1px solid;
 }
 
-button { width:100px; height:22px; font-family:Verdana; font-size:11px; }
+#abc {
 
-label { width:110px; text-align:left; }
+	text-align: center;
+
+}
+
+.confirm { 
+	width:100px; 
+	height:22px; 
+	font-size:11px; 
+	margin: 5px;
+}
 
 .campo { width:240px; }
 
@@ -39,12 +41,10 @@ label { width:110px; text-align:left; }
 #transparencia {
 	background-color:#FFFFFF; 
 	z-index:1; 
-	position:absolute;
+	position: absolute;
 	width:400px;
 	height:260px;
 	display:none;
-	opacity:0.95; 
-	filter: alpha(opacity="95");
 }
 
 #transparenciaMensaje {
