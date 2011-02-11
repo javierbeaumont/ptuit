@@ -34,10 +34,6 @@
  */
 class controladorFrontal {
 
-    private $rutaClases;
-    private $rutaPaginas;
-    private $rutaControlF;
-
     public function __construct() {
         
     }
@@ -47,8 +43,8 @@ class controladorFrontal {
         $rutaClases = $_SERVER['DOCUMENT_ROOT'] . '/php/clases/';
         $rutaPaginas = $_SERVER['DOCUMENT_ROOT'] . '/web/';
         $rutaControlF = $_SERVER['DOCUMENT_ROOT'] . '/php/';
-
         include_once ($rutaClases . 'sesiones.php');
+
         if (isset($_GET['controlador'])) {
             $controlador = $_GET['controlador'];
         } else {
@@ -59,7 +55,7 @@ class controladorFrontal {
             }
         }
         if (isset($_GET['accion'])) {
-            $accion = $_GET['accion'] ;
+            $accion = $_GET['accion'];
         } else {
             $accion = 'index';
         }
@@ -69,9 +65,9 @@ class controladorFrontal {
 //            $controlador = 'indexControl';
 //            $accion = 'index';
 //        }
-        $controlador=$controlador . 'Control';
+        $controlador = $controlador . 'Control';
 
-        $rutaControlador = $rutaClases . $controlador.'.php';
+        $rutaControlador = $rutaClases . $controlador . '.php';
 
         if (file_exists($rutaControlador)) {
             include_once( $rutaControlador );
@@ -86,9 +82,10 @@ class controladorFrontal {
         }
 
         if (method_exists($cont, $accion)) {
+
             $datosSalida = $cont->$accion();
         } else {
-            throw new Exception("No se encuentra la accion: $accion en controlador $controlador");
+            throw new Exception("No se encuentra la accion: $accion en controlador $controlador en la ruta $rutaControlador");
         }
 
 
@@ -100,9 +97,9 @@ class controladorFrontal {
             }
             if (file_exists($rutapagina)) {
                 include_once($rutapagina );
+            } else {
+                throw new Exception("No se encuentra la pagina a mostrar." . $rutapagina);
             }
-        } else {
-            throw new Exception("No se encuentra la pagina a mostrar.");
         }
     }
 

@@ -75,11 +75,11 @@ a {
     font-family: sans-serif;
 }
 
-.txtMen{
+#txtMen{
     text-align: left;
-    background: #FFFFFF url('../imagen/logo/logotextarea.jpg') no-repeat  center ;
+    background: #FFFFFF  url('../imagen/logotextarea.jpg') no-repeat center  ;
 }
-#botonTxt{
+#botonTxt{    
     float: right;
     margin-right: 1em;
 

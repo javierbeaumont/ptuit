@@ -18,7 +18,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <?php
-require_once ( '../php/controladorFrontal.php');
+require_once ( 'controladorFrontal.php');
+syslog(LOG_INFO, "Iniciando la peticion..");
 controladorFrontal::arranca();
+
+
 ?>
  

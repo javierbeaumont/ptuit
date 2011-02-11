@@ -5,7 +5,7 @@
         <title>Ptuit </title>
         <link rel="stylesheet" href="/web/css/style.css" type="text/css"/>
         <script type="text/javascript" src="/web/js/jquery.js"></script>
-        <script type="text/javascript" src="/web/js/contadorTexto.js"/></script>
+        <script type="text/javascript" src="/web/js/contadorTexto.js"></script>
     </head>
 
     <body>
@@ -22,8 +22,8 @@
                     <form action="#" method="post">
                         <fieldset >
                             <legend>Escribe tu ptuit</legend>
-                            <textarea class="txtMen" name="mensaje" title="mensaje" cols="63" rows="3" ></textarea>
-                            <div id="botonTxt"><input title="enviar" name="ptuit" value="ptuit.." type="submit"/></div>
+                            <textarea id="txtMen" name="mensaje" title="mensaje" cols="63" rows="2" ></textarea>
+                            <input id="botonTxt" title="enviar" name="ptuit" value="ptuit.." type="submit"/>
                         </fieldset>
                     </form>
                 </div>

@@ -4,16 +4,16 @@
  */
 
 $(document).ready(function(){
-   $("textarea").cuentaCaracteres();
+   $("#txtMen").cuentaCaracteres();
 })
 
 jQuery.fn.cuentaCaracteres= function(){
     txt=$(this);
-    var contador =$('<div>Nº Caracteres: '+ txt.attr("value").length+'</div>');
+    var contador =$('<div style="float: left;">: '+ txt.attr("value").length+' :</div>');
     txt.after(contador);
     txt.keyup(function(){
 
-    contador.text('Nº Caracteres: '+txt.attr("value").length);
+    contador.text(': '+txt.attr("value").length+' :');
 
         });
         return this;
