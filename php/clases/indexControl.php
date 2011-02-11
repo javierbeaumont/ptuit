@@ -28,11 +28,12 @@ class indexControl {
 
     public function indexAccion(){
 
+
         return  array ("pagina"=>"holamundo.php","datos"=>"Hola Tio");
         
     }
     public function cajaAccion(){
-        return array("pagina"=>"cajaMensajes.php","datos"=>"Escribe algo aqui....");
+        return array("pagina"=>"cajaMensajes.php","datos"=>"json ");
     }
 
     
