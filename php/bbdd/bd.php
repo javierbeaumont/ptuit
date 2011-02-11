@@ -1,132 +1,166 @@
 <?php
+# ptuit
+#
+# Copyright © 2011 Gemma Agramonte <mail>
+#
+# This file is part of ptuit.
+#
+# ptuit is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# ptuit is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with ptuit. If not, see <http://www.gnu.org/licenses/>.
 
-private class bd{
 
-  private function conexionBd(){   //crea la conexion con la BD
+class bd{
+
+  protected $db;
+
+  protected function conexionBd(){   //crea la conexion con la BD
     try {
-        $db = new PDO('mysql:host=localhost', 'root', '');
-        $db->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, TRUE);
-        return($db);
-    } catch (PDOException $e) {
-        cabecera('Error grave');
-        print "<p>Error: No puede conectarse con la BD.</p>\n";
-        //  print "<p>Error: " . $e->getMessage() . "</p>\n";
-        //pie();
+        $this->db = new PDO('mysql:host='.DB_HOST, DB_USER, DB_PASSWORD);
+        $this->db->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, TRUE);
+        return($this->db);
+    } catch (PDOException $e) {       
+        print "<p>Error: No puede conectarse con la BD." .$e->getMessage(). "</p>\n";
         exit();
     }
-    $db = conexionBd();
+    $this->db=conexionBd();
   }
 
-  private function desconexionBd() {   //desconecta la BD por seguridad
-   $db = NULL; 
+  protected function desconexionBd() {   //desconecta la BD por seguridad
+   $this->db = NULL; 
   }
 
+  protected function recogerPrepararDatosSelect($tabla,$array){   //con prepare recojo datos en vble array y le quito comas/comillas... etc.
 
-
-
-
-
-  private function recogerPrepararDatos($tabla,$array){  
-  //con prepare recojo datos en vble array y le quito comas/comillas... etc.
-
-    for ($i=0; $i<count($array); $i++)  
+    for ($i=0; $i<count($array); $i++)       
     {       
-      $bd->bindParam($i,$array[$i]);
+      if ($array[1]==null and $tabla=="usuario") $i++; 
+      $a= $this->db;
+      $a->bindParam($i,$array[$i]);
       $arrayPrepared[$i]=$array[$i].', ';      
       print ($arrayPrepared[$i]);
     }  
-    $arrayPrepared[$i]=rtrim($arrayPrepared[$i],", ");
-    return $arrayPrepared;
-
-   /* $stmt = $db->prepare("INSERT INTO REGISTRY (name, value) VALUES (:name, :value)");
-    $stmt->bindParam(':name', $name);
-    $stmt->bindParam(':value', $value);*/
-
-    //$permiso=array($_GET['name'],$_GET['password']);
-    /*  if USUARIO.name=$_GET['name'] and USUARIO.password=$_GET['password'] then
-    
-    $tabla=array("nombreTabla", "b", "c");
-    array_push($tabla, "d", "e", "f"); 
-      
-   /*
-    $stmt = $bd->prepare("SELECT * FROM ? where name = ?");
-    if ($stmt->execute(array($_GET['name']))) {
-    while ($row = $stmt->fetch()) {
-      print_r($row);
-    }
-*/
+    $arrayPreparedSelect[$i]=rtrim($arrayPrepared[$i],", ");
+    return $arrayPreparedSelect;    
 }
-  
-  private function select($tabla){   
 
-    $db = conexionBd();
-    $arrayPrepared=recogerPrepararDatos();
-    $consulta = $db->prepare("SELECT $arrayPrepared FROM $tabla");
+ protected function recogerPrepararDatosWhere($tabla,$array){ 
+ 
+    for ($i=0; $i<count($array); $i++)       
+    { if ($array[1]==null and $tabla=="usuario") $i++;       
+      $a= $this->db;
+      $a->bindParam($i,$array[$i]);
+      $arrayPrepared[$i]= $arrayPrepared[$i]." ".$campos[$i]."=".$arrayPrepared[$i]." and ";       
+      print ($arrayPrepared[$i]);
+    }  
+    $arrayPreparedWhere[$i]=rtrim($arrayPrepared[$i]," and ");
+    return $arrayPreparedWhere; 
+ }
+
+ protected function recogerPrepararDatos_campoValor($tabla,$array){    
+
+    //preparo los valores introducidos sin comas...
+    for ($i=0; $i<count($array); $i++)       
+    { if ($array[1]==null and $tabla=="usuario") $i++;       
+      $a= $this->db;
+      $a->bindParam($i,$array[$i]);          
+      print ($array[$i]);
+    }     
+
+    // añado los = y las comas para formar la estructura
+    foreach ($array as $campo=>$valor)
+    {    $arrayPrepared= $arrayPrepared." ".$campo."=".$valor.", ";   }  //quitar =
+    $arrayPrepared=rtrim($arrayPrepared,", ");
+    return $arrayPrepared; 
+}
+
+//********************************* funciones select, update, insert y delete ****************************
+  
+  protected function select($tabla,$arraySelect,$arrayWhere){   
+
+    $this->db = conexionBd();
+    
+    $consulta = $this->db->prepare("SELECT $arrayPreparedSelect FROM $tabla WHERE $arrayPreparedWhere");
+    $arrayPreparedSelect=$this->recogerPrepararDatosSelect($tabla,$arraySelect);  
+    $arrayPreparedWhere=$this->recogerPrepararDatosWhere($tabla,$arrayWhere); 
    
-    $result = $db->query($consulta);
-    if (!$result) { print "<p>Error en la consulta.</p>\n";} 
+    $result = $this->db->query($consulta);
+    if (!$result) { 
+        print "<p>Error en la consulta.</p>\n"; 
+        return false;
+    } 
     else {
           print "<p>Consulta ejecutada.</p>\n";
           foreach ($result as $valor) {
 	    print "<p>$valor</p>\n";  //para comprobar, poner x campos
+	  return true;
 	}
     }
-    $db = NULL;
-    /*$stmt->execute();    
-    print "procedure returned $return_value\n";*/
-} 
+    $this->db = NULL;       
+  } 
 
-  private function insert($tabla){     
+  protected function update($tabla,$arraySet,$arrayWhere){    
 
-    $db = conectaDb();
-    $arrayPrepared=recogerPrepararDatos();
-
-    $consulta = $db->prepare("INSERT INTO $tabla VALUES ($arrayPrepared)");
- 
-    if ($db->query($consulta)) { print "<p>Registro creado correctamente.</p>\n"; }
-    else { print "<p>Error al crear el registro.<p>"; }
-    $db = NULL;
-  }
-
-  private function delete($tabla){   
-    $db = conectaDb();
-    $arrayPrepared=recogerPrepararDatos();
-
-    $consulta = "DELETE FROM $tabla WHERE id=$arrayPrepared[0]";
-    if ($db->query($consulta)) { print "<p>Registro borrado correctamente.</p>\n";} 
-    else { print "<p>Error al borrar el registro.</p>\n"; }
-    $db = NULL;
-}
-
-  private function update($tabla, $campos){    // $campos es un array con los nombres de los camposTabla
-
-    $db = conectaDb();
-    $arrayPrepared=recogerPrepararDatos();
-
-    for ($i=0; $i<count($arrayPrepared); $i++)  
-    {
-      if ($arrayPrepared[1]==null)  $i++;      
-      $arrayPrepared[$i]= $arrayPrepared[$i]." ".$campos[$i]."=".$arrayPrepared[$i].", ";      
-      print ($arrayPrepared[$i]);
-    }      
-    $arrayPrepared[$i]=rtrim($arrayPrepared[$i],", ");
-
-    $consulta = $db->prepare("UPDATE $tabla SET $arrayPrepared WHERE id=$arrayPrepared[0]");
+    $this->db = conexionBd();
+    //$arrayPreparedSelect=recogerPrepararDatosSelect();
      
-    if ($db->query($consulta)) { print "<p>Registro modificado correctamente.</p>\n"; } 
-    else {  print "<p>Error al modificar el registro.</p>\n"; }
-    $db = NULL;
-}
-
-
-/*try {
-    $bd = new PDO('mysql:host=localhost;dbname=test', $user, $pass);
-    foreach($bd->query('SELECT * from FOO') as $row) {
-        print_r($row);
+    $consulta = $this->db->prepare("UPDATE $tabla SET $arrayPreparedSet WHERE $arrayPreparedWhere");
+    $arrayPreparedWhere=$this->recogerPrepararDatosWhere($tabla,$arrayWhere); 
+    $arrayPreparedSet=$this->recogerPrepararDatos_campoValor($tabla,$arraySet); 
+     
+    if ($this->db->query($consulta)) {
+       print "<p>Registro modificado correctamente.</p>\n"; 
+       return true;
+    } 
+    else {  
+       print "<p>Error al modificar el registro.</p>\n"; 
+       return false;
     }
-    $bd = null;
-} catch (PDOException $e) {
-    print "Error!: " . $e->getMessage() . "<br/>";
-    die();
-}*/
+    $this->db = NULL;
+   }
+
+   protected function insert($tabla,$array){     
+
+    $this->db=conexionBd();
+    //$arrayPrepared=recogerPrepararDatosSelect($tabla,$array);
+   
+    $consulta=$this->db->prepare("INSERT INTO $tabla VALUES ($arrayPreparedInsert)");
+    $arrayPreparedInsert=$this->recogerPrepararDatos_campoValor($tabla,$array);   
+ 
+    if ($this->db->query($consulta)) { 
+       print "<p>Registro creado correctamente.</p>\n"; 
+       return true;
+    }
+    else { 
+       print "<p>Error al crear el registro.<p>"; 
+       return false;
+    }
+    $this->db = NULL;
+   }
+
+  protected function delete($tabla,$arrayWhere){   
+    $this->db=conexionBd();
+  
+    $consulta="DELETE FROM $tabla WHERE $arrayPreparedWhere";
+    $arrayPreparedWhere=$this->recogerPrepararDatosWhere($tabla,$arrayWhere); 
+
+    if ($this->db->query($consulta)) { 
+        print "<p>Registro borrado correctamente.</p>\n";
+        return true;
+    } 
+    else { 
+        print "<p>Error al borrar el registro.</p>\n"; 
+        return false;}
+    $this->db = NULL;
+  }
+}
 ?>
