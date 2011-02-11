@@ -1,5 +1,9 @@
 use ptuit;
 
+ALTER TABLE mensaje ENGINE = InnoDB;
+ALTER TABLE usuario ENGINE = InnoDB;
+ALTER TABLE seguirusuario ENGINE = InnoDB;
+
 /* TABLA DE USUARIOS */
 delete from usuario;
 
@@ -43,5 +47,29 @@ INSERT INTO `mensaje` (id,mensaje,fecha,usuario,tipo)
 VALUES ("6","Mensaje 6","20110209","6","");
 
 
+
+INSERT INTO `seguirusuario` (idseguido, idseguidor)
+VALUES ("6","5");
+
+INSERT INTO `seguirusuario` (idseguido, idseguidor)
+VALUES ("6","4");
+
+INSERT INTO `seguirusuario` (idseguido, idseguidor)
+VALUES ("6","1");
+
+INSERT INTO `seguirusuario` (idseguido, idseguidor)
+VALUES ("1","3");
+
+INSERT INTO `seguirusuario` (idseguido, idseguidor)
+VALUES ("2","4");
+
+INSERT INTO `seguirusuario` (idseguido, idseguidor)
+VALUES ("4","5");
+
+ALTER TABLE seguirusuario ADD FOREIGN KEY (idseguido) REFERENCES usuario (id);
+ALTER TABLE seguirusuario ADD FOREIGN KEY (idseguidor) REFERENCES usuario (id);
+ALTER TABLE mensaje ADD FOREIGN KEY (usuario) REFERENCES usuario (id);
+
 select * from usuario;
 select * from mensaje;
+select * from seguirusuario;
