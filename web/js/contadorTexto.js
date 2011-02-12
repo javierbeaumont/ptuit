@@ -4,14 +4,13 @@
  */
 
 $(document).ready(function(){
-    $("#txtMen").cuentaCaracteres();
+    $(".txtMen").cuentaCaracteres();
     $("#botonTxt").click(enviarMensaje);
 })
 
 jQuery.fn.cuentaCaracteres= function(){
     txt=$(this);
-    var contador =$('<div style="float: left;">: '+ txt.attr("value").length+' :</div>');
-    txt.after(contador);
+    var contador =$('.contador');
     txt.keyup(function(){
 
         contador.text(': '+txt.attr("value").length+' :');
@@ -22,7 +21,10 @@ jQuery.fn.cuentaCaracteres= function(){
 }
 function enviarMensaje(){
     
-    var texto=$("#txtMen").attr("value");
+    var texto=$(".txtMen").attr("value");
+
+    $(".txtMen").val("");
+    $('.contador').text(': 0 :')
     $.ajax({
         url:"/php/iniciar.php",
         async: true,
@@ -42,9 +44,9 @@ function enviarMensaje(){
     return false;
 }
 function inicioEnvio (datos){
-    $("#txtMen").addClass('#txtMenCargando');
+    $(".txtMen").addClass("txtMenCargando");
     
-    alert("Iniciando el Envio...."+texto);
+    alert("Iniciando el Envio...."+datos);
     
 }
 function llegadaDatos (datos){
@@ -56,10 +58,11 @@ function problemasEnvio(objeto, quepaso, otroobj){
 
 }
 function completado(){
+    $(".txtMen").removeClass("txtMenCargando");
     
     alert("Me acabo de completar")
-            if(exito=="success"){
-                alert("Y con éxito");
-            }
+    if(exito=="success"){
+        alert("Y con éxito");
+    }
 
 }

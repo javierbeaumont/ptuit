@@ -22,6 +22,9 @@
 
 
     <head>
+        <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"/>
+        <meta http-equiv="cache-control" content="no-cache"/>
+        
         <title>Ptuit </title>
         <link rel="stylesheet" href="/web/css/style.css" type="text/css"/>
         <script type="text/javascript" src="/web/js/jquery.js"></script>
@@ -47,66 +50,67 @@
                     <form action="/php/iniciar.php" method="post">
                         <fieldset >
                             <legend>Escribe tu ptuit</legend>
-                            <textarea id="txtMen" name="mensaje" title="mensaje" cols="63" rows="2" ></textarea>
-                            <input id="botonTxt" title="enviar" name="ptuit" value="ptuit.." type="submit"/>
+                            <textarea class="txtMen" name="mensaje" title="mensaje" cols="63" rows="2" ></textarea>
+                            <div class="contador" ></div>
+                            <input id="botonTxt" title="enviar" name="ptuit" value="ptuit.." type="button"/>
                         </fieldset>
                     </form>
                 </div>
                 <div id="caja_men" >
-                    <fieldset onload="JavaScript:timedRefresh(5000);">
+                    <fieldset >
                         <script type="text/javascript">
 
-                            /*llamada para obtener el id del mensaje*/
+                            /*llamada para obtener el id del mensaje onload="JavaScript:timedRefresh(5000)";*/
 
 
                             /*llamada para obtener los mensajes nuevos*/
 
-                            include("/php/obtenerMensajesNuevos.php");
-                            $mensajesNuevos= obtenerMensajesNuevos($idmensaje);
-
-                            $.getJSON($mensajesNuevos, function(data) {
-                                var items = [];
-
-                                $.each(data, function(id, usuario, fecha, mensaje) {
-                                    items.push('<div id=\"'+fecha+'\"><p> '+id+usuario+fecha+' <br /> '+mensaje+' </p> </div>');
-                                });
-
-                                items.appendTo('#caja_men');
-
-                            });
-
-
-                            /* comprobar que hay mensajes nuevos*/
-                            /*Si hay mensajes nuevos*/
-                            /*
-                                          for(var i=1; i</*numero de mensajes; i++){
-                                            /*añadir mensajes mediante
-
-                                              var cm = document.getElementById("caja_men");
-                                              var div = document.createElement("div");
-                                              var p = document.createElement("p");
-                                            var texto = document.createTextNode(/*mensaje*);
-
-                                              p.appendChild(texto);
-                                              div.appendChild(p);
-                                              div.attributes.setNamedItem("class").nodeValue = "mensaje";
-                                              div.attributes.setNamedItem("id").nodeValue = /*fecha del mensaje*/;
-                            cm.appenchild(div);
-
-                            /*efecto para añadir mensaje
-
-                                              $("#").fadeIn(3000);
-
-                                              /*control de numero de mensajes
-                                              var men = document.getElementsByTagName(".mensaje");
-                                              /*20 mensajes como maximo
-                                              if(men.length==20){
-                                                  var men_elim = document.getElementsByTagName(".mensaje")[19];
-                                                  document.body.removeChild(men_elim);
-                                              }
-                                        }
-                                    }
-                                });*/
+                            //                            include("/php/obtenerMensajesNuevos.php");
+                            //                            $mensajesNuevos= obtenerMensajesNuevos($idmensaje);
+                            //
+                            //                            $.getJSON($mensajesNuevos, function(data) {
+                            //                                var items = [];
+                            //
+                            //                                $.each(data, function(id, usuario, fecha, mensaje) {
+                            //                                    items.push('<div id=\"'+fecha+'\"><p> '+id+usuario+fecha+' <br /> '+mensaje+' </p> </div>');
+                            //                                });
+                            //
+                            //                                items.appendTo('#caja_men');
+                            //
+                            //                            });
+                            //
+                            //
+                            //                            /* comprobar que hay mensajes nuevos*/
+                            //                            /*Si hay mensajes nuevos*/
+                            //                            /*
+                            //                                          for(var i=1; i</*numero de mensajes; i++){
+                            //                                            /*añadir mensajes mediante
+                            //
+                            //                                              var cm = document.getElementById("caja_men");
+                            //                                              var div = document.createElement("div");
+                            //                                              var p = document.createElement("p");
+                            //                                            var texto = document.createTextNode(/*mensaje*);
+                            //
+                            //                                              p.appendChild(texto);
+                            //                                              div.appendChild(p);
+                            //                                              div.attributes.setNamedItem("class").nodeValue = "mensaje";
+                            //                                              div.attributes.setNamedItem("id").nodeValue = /*fecha del mensaje*/;
+                            //                            cm.appenchild(div);
+                            //
+                            //                            /*efecto para añadir mensaje
+                            //
+                            //                                              $("#").fadeIn(3000);
+                            //
+                            //                                              /*control de numero de mensajes
+                            //                                              var men = document.getElementsByTagName(".mensaje");
+                            //                                              /*20 mensajes como maximo
+                            //                                              if(men.length==20){
+                            //                                                  var men_elim = document.getElementsByTagName(".mensaje")[19];
+                            //                                                  document.body.removeChild(men_elim);
+                            //                                              }
+                            //                                        }
+                            //                                    }
+                            //                                });*/
 
                         </script>
                     </fieldset>

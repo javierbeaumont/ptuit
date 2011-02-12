@@ -75,19 +75,26 @@ a {
     font-family: sans-serif;
 }
 
-#txtMen{
+.txtMen{
     text-align: left;
     background: #FFFFFF  url('../imagen/logotextarea.jpg') no-repeat center  ;
 }
-#txtMenCargando{
-    background: #F111F1  url('../imagen/loading.gif') no-repeat center  ;
+.txtMenCargando{
+    background: #FFFFFF  url('../imagen/loading.gif') no-repeat center  ;
 }
 #botonTxt{    
     float: right;
     margin-right: 1em;
 
 }
+#caja_men{
+    padding-top: 1em;
+}
 #caja_men fieldset{
+    
     height: 350px;
 
+}
+.contador{
+    float: left;
 }
