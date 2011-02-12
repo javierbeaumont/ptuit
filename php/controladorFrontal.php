@@ -39,67 +39,90 @@ class controladorFrontal {
     }
 
     public static function arranca() {
+        try {
 
-        $rutaClases = $_SERVER['DOCUMENT_ROOT'] . '/php/clases/';
-        $rutaPaginas = $_SERVER['DOCUMENT_ROOT'] . '/web/';
-        $rutaControlF = $_SERVER['DOCUMENT_ROOT'] . '/php/';
-        include_once ($rutaClases . 'sesiones.php');
 
-        if (isset($_GET['controlador'])) {
-            $controlador = $_GET['controlador'];
-        } else {
-            if (isset($_POST['controlador'])) {
-                $controlador = $_POST['controlador'];
+
+
+            $rutaClases = $_SERVER['DOCUMENT_ROOT'] . '/php/clases/';
+            $rutaPaginas = $_SERVER['DOCUMENT_ROOT'] . '/web/';
+            $rutaControlF = $_SERVER['DOCUMENT_ROOT'] . '/php/';
+            include_once ($rutaClases . 'sesiones.php');
+
+            if (isset($_GET['controlador'])) {
+                $controlador = $_GET['controlador'];
+                if (isset($_GET['accion'])) {
+                    $accion = $_GET['accion'];
+                } else {
+                    $accion = 'index';
+                }
             } else {
-                $controlador = 'index';
+                if (isset($_POST['controlador'])) {
+                    $controlador = $_POST['controlador'];
+                    $accion = $_POST['accion'];
+                } else {
+                    $controlador = 'index';
+                    $accion = 'index';
+                }
             }
-        }
-        if (isset($_GET['accion'])) {
-            $accion = $_GET['accion'];
-        } else {
-            $accion = 'index';
-        }
+
 
 //        $sesiones = new Sesiones();
 //        if (!$sesiones->existeSesion()) {
 //            $controlador = 'indexControl';
 //            $accion = 'index';
 //        }
-        $controlador = $controlador . 'Control';
+            $controlador = $controlador . 'Control';
 
-        $rutaControlador = $rutaClases . $controlador . '.php';
+            $rutaControlador = $rutaClases . $controlador . '.php';
 
-        if (file_exists($rutaControlador)) {
-            include_once( $rutaControlador );
-        } else {
-            throw new Exception("No se encuentra el $controlador $rutaControlador");
-        }
-
-        if (class_exists($controlador, false)) {
-            $cont = new $controlador();
-        } else {
-            throw new Exception("No carga el Controlador:   $controlador");
-        }
-
-        if (method_exists($cont, $accion)) {
-
-            $datosSalida = $cont->$accion();
-        } else {
-            throw new Exception("No se encuentra la accion: $accion en controlador $controlador en la ruta $rutaControlador");
-        }
-
-
-        if (isset($datosSalida['pagina'])) {
-            $rutapagina = $_SERVER['DOCUMENT_ROOT'] . '/web/' . $datosSalida['pagina'];
-            if (isset($datosSalida['datos'])) {
-                $datos = $datosSalida["datos"];
-                echo '<?php  ' . $datos . '  ?>';
-            }
-            if (file_exists($rutapagina)) {
-                include_once($rutapagina );
+            if (file_exists($rutaControlador)) {
+                include_once( $rutaControlador );
             } else {
-                throw new Exception("No se encuentra la pagina a mostrar." . $rutapagina);
+                throw new Exception("No se encuentra el $controlador $rutaControlador");
             }
+
+            if (class_exists($controlador, false)) {
+                $cont = new $controlador();
+            } else {
+                throw new Exception("No carga el Controlador:   $controlador");
+            }
+
+            if (method_exists($cont, $accion)) {
+
+                $datosSalida = $cont->$accion();
+            } else {
+                throw new Exception("No se encuentra la accion: $accion en controlador $controlador en la ruta $rutaControlador");
+            }
+
+
+            if (isset($datosSalida['pagina'])) {
+                if ($datosSalida['pagina'] == "json") {
+                    header('Cache-Control: no-cache, must-revalidate');
+                    header('Content-type: application/json; charset=utf-8');
+
+                    if (isset($datosSalida['datos'])) {
+
+                        echo json_encode($datosSalida['datos']);
+                    } else {
+                        echo "{datos: nohay}";
+                    }
+                } else {
+                    header('Content-Type: text/html; charset=utf-8');
+                    $rutapagina = $_SERVER['DOCUMENT_ROOT'] . '/web/' . $datosSalida['pagina'];
+                    if (isset($datosSalida['datos'])) {
+                        $datos = $datosSalida["datos"];
+                        echo '<?php  ' . $datos . '  ?>';
+                    }
+                    if (file_exists($rutapagina)) {
+                        include_once($rutapagina );
+                    } else {
+                        throw new Exception("No se encuentra la pagina a mostrar." . $rutapagina);
+                    }
+                }
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
         }
     }
 

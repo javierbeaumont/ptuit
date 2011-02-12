@@ -25,13 +25,16 @@
  *
  * @author rubentxu
  */
-
 class mensajeControl {
 
     public function cogerMensaje() {
 
-    return array("pagina"=>"cajaMensajes.php","datos"=>"HOLA A TODOS ESTO ES PTUIT ");
+        return array("pagina" => "cajaMensajes.php", "datos" => "HOLA A TODOS ESTO ES PTUIT ");
+    }
 
+    public function crearMensaje() {
+        return array("pagina" => "json",
+            "datos" => array ('a'=>1,'b'=>2,'c'=>3,'d'=>4,'e'=>5));
     }
 
 }
