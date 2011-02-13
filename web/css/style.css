@@ -88,30 +88,39 @@ a {
 
 }
 #caja_men{
-    padding-top: 1em;
+    height: 360px;
+    margin-top: 1em;    
+    overflow: auto;
+    overflow-x:hidden;
 }
-#caja_men fieldset{
 
-    height: 350px;
-
-}
 .contador{
     float: left;
 }
 .ptuits {
-    border: 1x solid #FFFFFF;
-    background-color: #ECEFF5;
-    padding: 5px;
-    width: 360px;
+    border-bottom: 1px solid #DB5C12;
+    background-color: transparent;
+    padding: 0.5em;
+
+    width: 460px;
+    height: 50px;
     font-family: tahoma;
     font-size: 9pt;
+    display: block;
     
-    list-style: none url('../imagen/ptuit.png');
-    list-style-position: outside;
+    
+   
 
 }
 .avatar{
+    padding: 1em .5 1em 0;
+    float: left;
+    width: 43px;
+    height: 27px;
 
 
 }
-    
+.avatarTxt{
+    padding: 0.7em;
+    overflow: hidden;
+}

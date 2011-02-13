@@ -44,21 +44,17 @@ function enviarMensaje(){
     return false;
 }
 function inicioEnvio (datos){
-    $(".txtMen").addClass("txtMenCargando");
-    
-    alert("Iniciando el Envio...."+datos);
+    $(".txtMen").addClass("txtMenCargando");    
     
 }
 function llegadaDatos (datos){
     //var mens=jQuery.parseJSON(datos);
     
     alert("Llegaron los datos..."+datos.mensaje);
-    var nuevoMensaje=$('<img class="avatar" style="margin-top: 1px;position:'+
-        ' absolute; top:1px;" src="imagen/ptuit.png"/>'+
-         '<span class="avatarTxt" style="display: inline-block;width:'+
-         ' 320px;overflow: hidden;">'+datos.mensaje+'</span></li>');
-
-    nuevoMensaje.appendTo($('.ptuits'));
+    var avatar=$('<div class="ptuits"><img class="avatar" label="ptuit" src="/web/imagen/ptuit.png"></img></div>');
+    avatar.appendTo($('#caja_men'));
+    var nuevoMens=$('<span class="avatarTxt">'+datos.mensaje+'</span></div>');
+    nuevoMens.appendTo($(avatar));
     
 }
 function problemasEnvio(objeto, quepaso, otroobj){
@@ -66,9 +62,8 @@ function problemasEnvio(objeto, quepaso, otroobj){
 
 }
 function completado(exito){
-    $(".txtMen").removeClass("txtMenCargando");
+    $(".txtMen").removeClass("txtMenCargando");   
     
-    alert("Me acabo de completar")
     if(exito=="success"){
         alert("Y con éxito");
     }

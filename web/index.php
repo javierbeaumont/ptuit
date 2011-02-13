@@ -22,8 +22,8 @@
 
 
     <head>
-        <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"/>
-        <meta http-equiv="cache-control" content="no-cache"/>
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="expires" content="-1" />
         
         <title>Ptuit </title>
         <link rel="stylesheet" href="/web/css/style.css" type="text/css"/>
@@ -57,11 +57,8 @@
                     </form>
                 </div>
                 <div id="caja_men" >
-                    <fieldset >
-                        <div class="ptuits">
-                            <img class="avatar" src="imagen/ptuit.png" style="margin-top: 1px;position: absolute;"/>
-                            <span class="avatarTxt" style="display: inline-block;width: 320px;overflow: hidden;"></span>
-                        </div>
+                    
+                        
                         <script type="text/javascript">
 
                             /*llamada para obtener el id del mensaje onload="JavaScript:timedRefresh(5000)";*/
@@ -117,7 +114,7 @@
                             //                                });*/
 
                         </script>
-                    </fieldset>
+                    
                 </div>
 
 
