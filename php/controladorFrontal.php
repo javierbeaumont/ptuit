@@ -34,95 +34,122 @@
  */
 class controladorFrontal {
 
-    public function __construct() {
-        
+    private $rutaClases;
+    private $rutaPaginas;
+    private $rutaControlF;
+    private $controlador;
+    private $accion;
+
+    public
+
+    function __construct() {
+
+        $this->rutaClases = $_SERVER['DOCUMENT_ROOT'] . '/php/clases/';
+        $this->rutaPaginas = $_SERVER['DOCUMENT_ROOT'] . '/web/';
+        $this->rutaControlF = $_SERVER['DOCUMENT_ROOT'] . '/php/';
+        $this->controlador = "index";
+        $this->accion = "index";
     }
 
-    public static function arranca() {
+    function arranca() {
+
         try {
 
 
-
-
-            $rutaClases = $_SERVER['DOCUMENT_ROOT'] . '/php/clases/';
-            $rutaPaginas = $_SERVER['DOCUMENT_ROOT'] . '/web/';
-            $rutaControlF = $_SERVER['DOCUMENT_ROOT'] . '/php/';
-            include_once ($rutaClases . 'sesiones.php');
-
-            if (isset($_GET['controlador'])) {
-                $controlador = $_GET['controlador'];
-                if (isset($_GET['accion'])) {
-                    $accion = $_GET['accion'];
-                } else {
-                    $accion = 'index';
-                }
-            } else {
-                if (isset($_POST['controlador'])) {
-                    $controlador = $_POST['controlador'];
-                    $accion = $_POST['accion'];
-                } else {
-                    $controlador = 'index';
-                    $accion = 'index';
-                }
-            }
-
-
+            // include_once ($this->rutaClases . 'sesiones.php');
 //        $sesiones = new Sesiones();
 //        if (!$sesiones->existeSesion()) {
 //            $controlador = 'indexControl';
 //            $accion = 'index';
 //        }
-            $controlador = $controlador . 'Control';
+            $this->comprobarPeticion();
+            $d = $this->ejecutarAccion();
+            $this->imprimirPagina($d);
+        } catch (Exception $exc) {
+            echo "Fallo en Controlador Frontal--- " . $exc->getTraceAsString();
+        }
+    }
 
-            $rutaControlador = $rutaClases . $controlador . '.php';
+    function comprobarPeticion() {
 
-            if (file_exists($rutaControlador)) {
-                include_once( $rutaControlador );
-            } else {
-                throw new Exception("No se encuentra el $controlador $rutaControlador");
-            }
+        switch ($_SERVER['REQUEST_METHOD']) {
+            case 'GET':
+                if (isset($_GET['controlador'])) {
+                    $this->controlador = $_GET['controlador'];
+                }
+                if (isset($_GET['accion'])) {
+                    $this->accion = $_GET['accion'];
+                }
+                break;
+            case 'POST':
+                if (isset($_POST['controlador'])) {
+                    $this->controlador = $_POST['controlador'];
+                }
+                if (isset($_POST['accion'])) {
+                    $this->accion = $_POST['accion'];
+                }
+                break;
 
-            if (class_exists($controlador, false)) {
-                $cont = new $controlador();
-            } else {
-                throw new Exception("No carga el Controlador:   $controlador");
-            }
+            default:
+                $this->controlador = 'index';
+                $this->accion = 'index';
+                break;
+        }
+    }
 
-            if (method_exists($cont, $accion)) {
+    function ejecutarAccion() {
 
-                $datosSalida = $cont->$accion();
-            } else {
-                throw new Exception("No se encuentra la accion: $accion en controlador $controlador en la ruta $rutaControlador");
-            }
+        $controlador = $this->controlador . 'Control';
+        $accion = $this->accion;
 
+        $rutaControlador = $this->rutaClases . $controlador . '.php';
 
-            if (isset($datosSalida['pagina'])) {
-                if ($datosSalida['pagina'] == "json") {
-                    header('Cache-Control: no-cache, must-revalidate');
-                    header('Content-type: application/json; charset=utf-8');
+        if (file_exists($rutaControlador)) {
+            include_once( $rutaControlador );
+        } else {
+            throw new Exception("No se encuentra el $controlador $rutaControlador");
+        }
 
-                    if (isset($datosSalida['datos'])) {
+        if (class_exists($controlador, false)) {
+            $cont = new $controlador();
+        } else {
+            throw new Exception("No carga el Controlador:   $controlador");
+        }
 
-                        echo json_encode($datosSalida['datos']);
-                    } else {
-                        echo "{datos: nohay}";
-                    }
+        if (method_exists($cont, $accion)) {
+
+            return $datosSalida = $cont->$accion();
+        } else {
+            throw new Exception("No se encuentra la accion: $accion en controlador $controlador en la ruta $rutaControlador");
+        }
+    }
+
+    function imprimirPagina($datosSalida) {
+
+        if (isset($datosSalida['pagina'])) {
+            if ($datosSalida['pagina'] == "json") {
+                header('Cache-Control: no-cache, must-revalidate');
+                header('Content-type: application/json; charset=utf-8');
+
+                if (isset($datosSalida['datos'])) {
+
+                    echo json_encode($datosSalida['datos']);
                 } else {
-                    header('Content-Type: text/html; charset=utf-8');
-                    $rutapagina = $_SERVER['DOCUMENT_ROOT'] . '/web/' . $datosSalida['pagina'];
-                    if (isset($datosSalida['datos'])) {
-                        $datos = $datosSalida["datos"];
-                        echo '<?php  ' . $datos . '  ?>';
-                    }
-                    if (file_exists($rutapagina)) {
-                        include_once($rutapagina );
-                    } else {
-                        throw new Exception("No se encuentra la pagina a mostrar." . $rutapagina);
-                    }
+                    echo "{datos: nohay}";
+                }
+            } else {
+                header('Content-Type: text/html; charset=utf-8');
+                $rutapagina = $_SERVER['DOCUMENT_ROOT'] . '/web/' . $datosSalida['pagina'];
+                if (isset($datosSalida['datos'])) {
+                    $datos = $datosSalida["datos"];
+                    echo '<?php  ' . $datos . '  ?>';
+                }
+                if (file_exists($rutapagina)) {
+                    include_once($rutapagina );
+                } else {
+                    throw new Exception("No se encuentra la pagina a mostrar." . $rutapagina);
                 }
             }
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
         }
     }
 

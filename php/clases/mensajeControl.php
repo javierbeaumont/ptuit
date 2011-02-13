@@ -33,8 +33,9 @@ class mensajeControl {
     }
 
     public function crearMensaje() {
+        $mensaje=$_POST['txtMen'];
         return array("pagina" => "json",
-            "datos" => array ('a'=>1,'b'=>2,'c'=>3,'d'=>4,'e'=>5));
+            "datos" => array ('a'=>1,'b'=>2,'c'=>3,'d'=>4,'e'=>5,'mensaje'=>$mensaje));
     }
 
 }
