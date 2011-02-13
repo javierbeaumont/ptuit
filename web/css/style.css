@@ -91,10 +91,27 @@ a {
     padding-top: 1em;
 }
 #caja_men fieldset{
-    
+
     height: 350px;
 
 }
 .contador{
     float: left;
 }
+.ptuits {
+    border: 1x solid #FFFFFF;
+    background-color: #ECEFF5;
+    padding: 5px;
+    width: 360px;
+    font-family: tahoma;
+    font-size: 9pt;
+    
+    list-style: none url('../imagen/ptuit.png');
+    list-style-position: outside;
+
+}
+.avatar{
+
+
+}
+    

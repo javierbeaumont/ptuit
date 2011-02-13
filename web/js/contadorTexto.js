@@ -50,14 +50,22 @@ function inicioEnvio (datos){
     
 }
 function llegadaDatos (datos){
-    alert("Llegaron los datos..."+datos);
+    //var mens=jQuery.parseJSON(datos);
+    
+    alert("Llegaron los datos..."+datos.mensaje);
+    var nuevoMensaje=$('<img class="avatar" style="margin-top: 1px;position:'+
+        ' absolute; top:1px;" src="imagen/ptuit.png"/>'+
+         '<span class="avatarTxt" style="display: inline-block;width:'+
+         ' 320px;overflow: hidden;">'+datos.mensaje+'</span></li>');
+
+    nuevoMensaje.appendTo($('.ptuits'));
     
 }
 function problemasEnvio(objeto, quepaso, otroobj){
     alert("Hubo un fallo en el envio AJAX... Pasó lo siguiente: "+quepaso);
 
 }
-function completado(){
+function completado(exito){
     $(".txtMen").removeClass("txtMenCargando");
     
     alert("Me acabo de completar")
