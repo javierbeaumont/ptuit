@@ -39,6 +39,7 @@ class controladorFrontal {
     private $rutaControlF;
     private $controlador;
     private $accion;
+    private $usuario;
 
     public
 
@@ -49,19 +50,30 @@ class controladorFrontal {
         $this->rutaControlF = $_SERVER['DOCUMENT_ROOT'] . '/php/';
         $this->controlador = "index";
         $this->accion = "index";
+        $this->usuario = "anonimo";
     }
 
     function arranca() {
 
         try {
 
+            $rutaLibSesiones = $this->rutaClases . 'Sesiones.php';
+            if (file_exists($rutaLibSesiones)) {
+                include_once( $rutaLibSesiones );
+            } else {
+                throw new Exception("No se encuentra la libreria $rutaLibSesiones");
+            }
+            $sesionLib = NULL;
+            if (class_exists('Sesiones', false)) {
+                $sesionLib = new Sesiones();
+            } else {
+                throw new Exception("No carga la libreria:   $rutaLibSesiones");
+            }
+            
+            if (!$sesionLib->existeSesion()) {
+                $_SESSION['idUser'] = $this->usuario;
+            };
 
-            // include_once ($this->rutaClases . 'sesiones.php');
-//        $sesiones = new Sesiones();
-//        if (!$sesiones->existeSesion()) {
-//            $controlador = 'indexControl';
-//            $accion = 'index';
-//        }
             $this->comprobarPeticion();
             $d = $this->ejecutarAccion();
             $this->imprimirPagina($d);

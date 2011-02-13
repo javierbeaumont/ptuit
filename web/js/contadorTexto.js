@@ -53,7 +53,7 @@ function llegadaDatos (datos){
     alert("Llegaron los datos..."+datos.mensaje);
     var avatar=$('<div class="ptuits"><img class="avatar" label="ptuit" src="/web/imagen/ptuit.png"></img></div>');
     avatar.appendTo($('#caja_men'));
-    var nuevoMens=$('<span class="avatarTxt">'+datos.mensaje+'</span></div>');
+    var nuevoMens=$('<span class="avatarTxt"><em style="color:blue;">'+datos.usuario+' :</em> '+datos.mensaje+'</span></div>');
     nuevoMens.appendTo($(avatar));
     
 }
