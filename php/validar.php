@@ -21,15 +21,15 @@
 class validar{
 
 /**
-*	Check the email received. The string must contain the '@' and the '.'
-*	and must contain from 1 to 64 characters (lleters numbre and '-' '_') as username and from 1 to 254 characters 
+*	Check the email received. The string must contain the @ and the .
+*	and must contain from 1 to 64 characters ( letters, numbers and -_. symbols ) as username and from 1 to 254 characters 
 *	as server.
 *
 *	Sorry for my english
 */
 function validar_email($email) 
 	 {
-	    $regex = "/(^[A-Za-z0-9]+[A-Za-z0-9-_]{0,63}\@{1}[A-Za-z0-9-_]{1,254}\.{1}[A-Za-z]{2,6})$/";
+	    $regex = "/(^[/w]+[/w-_.]{0,63}\@{1}[/w-_]{1,254}\.{1}[A-Za-z]{2,6})$/";
 	    // check the string and ensure that it contents the '@' and '.' symbols or go away
 	    (strpos($email, '@') && strpos($email, '.')) || return false;
 	    // test the string with the regular expresion
@@ -43,22 +43,17 @@ function validar_email($email)
 *
 */
 function validar_clave($clave,&$error_clave){
-   if(strlen($clave) < 8){
-      $error_clave = "The password must be at least 8 characters long";
-      return false;
-   }
-   if(strlen($clave) > 64){
-      $error_clave = "The password can't be more than 64 characters long";
-      return false;
-   }
-   $error_clave = "";
-   return true;
+   $length = strlen($clave);
+   if( 7 < $length && $length < 65) $error_clave = "";
+   else $error_clave = "The password must be between 8 and 64 characters long";
 } 
 
+/**
+*	Check the password given and the one stored in the database
+*
+*/
 function comparar_clave($clave,$repClave){
-   if($clave != $repClave) return false;
-
-   return true;
+   return ($clave == $repClave);
 } 
 
 ///Falta la creacion de una funcion que compruebe en la BD si el nick esta o no
