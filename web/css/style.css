@@ -1,71 +1,126 @@
 @charset "UTF-8";
 
 html {
-  margin: 0;
-  padding: 0;
-  background-color: #051d2a;
-  font-family: "Arial", "Helvetica", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #051d2a;
+    font-family: "Arial", "Helvetica", sans-serif;
 }
 
 body {
-  margin: 0 auto;
-  width: 1024px;  
-  height: 750px;
-  background-color: #FF8C00;
+    margin: 0 auto;
+    width: 1024px;
+    height: 750px;
+    background-color: #FF8C00;
 }
 
 a {
-  position: relative;
-  top: 10px;
-  right: 5px;
-  float: right;
-  padding: 2px;
-  font-size: 10pt;
-  background-color: black;
-  border: 1px solid #FF8C00;  
-  text-decoration: none;  
-  color: white;  
+    position: relative;
+    top: 10px;
+    right: 5px;
+    float: right;
+    padding: 2px;
+    font-size: 10pt;
+    background-color: black;
+    border: 1px solid #FF8C00;
+    text-decoration: none;
+    color: white;
 }
 
 #header {
-  position: relative;
-  z-index: 2;
-  background: transparent url('../imagen/header.png') no-repeat top center;
-  padding-top: 4px;
-  width: 1024px;
-  height: 200px;  
+    position: relative;
+    z-index: 2;
+    background: transparent url('../imagen/header.png') no-repeat top center;
+    padding-top: 4px;
+    width: 1024px;
+    height: 200px;
 }
 
 #header img {
-  position: relative;
-  float: left;
-  left: 20px;
-  top: 7px;  
+    position: relative;
+    float: left;
+    left: 20px;
+    top: 7px;
 }
 
 #content #marco {
-  position: relative;
-  z-index: 1;
-  width: 500px;
-  height: 700px;
-  background-color: #DB7112;
-  margin-left: 262px;
-  margin-top: -140px;
+    position: relative;
+    z-index: 1;
+    width: 500px;
+    height: 700px;
+    background-color: #DB7112;
+    margin-left: 262px;
+    margin-top: -140px;
 }
 
 #footer {
-  clear: both;
-  height: 224px;
-  position: relative;
-  margin: 0 auto;
-  margin-top: -170px;
-  z-index: 2;
-  background: transparent url('../imagen/footer.png') no-repeat top center; 
+    clear: both;
+    height: 224px;
+    position: relative;
+    margin: 0 auto;
+    margin-top: -170px;
+    z-index: 2;
+    background: transparent url('../imagen/footer.png') no-repeat top center;
 }
 
 #cc {
-  position: relative;
-  margin: 155px 0 0 10px;  
-  float: left;  
-  color: white;
+    position: relative;    
+    margin: 155px 0 0 10px;
+    float: left;
+    color: white;
+}
+#cajaMensaje{    
+    width: 500px;
+    padding-top:  7em;    
+    font-family: sans-serif;
+}
+
+.txtMen{
+    text-align: left;
+    background: #FFFFFF  url('../imagen/logotextarea.jpg') no-repeat center  ;
+}
+.txtMenCargando{
+    background: #FFFFFF  url('../imagen/loading.gif') no-repeat center  ;
+}
+#botonTxt{    
+    float: right;
+    margin-right: 1em;
+
+}
+#caja_men{
+    height: 360px;
+    margin-top: 1em;    
+    overflow: auto;
+    overflow-x:hidden;
+}
+
+.contador{
+    float: left;
+}
+.ptuits {
+    border-bottom: 1px solid #DB5C12;
+    background-color: transparent;
+    padding: 0.5em;
+
+    width: 460px;
+    height: 50px;
+    font-family: tahoma;
+    font-size: 9pt;
+    display: block;
+    
+    
+   
+
+}
+.avatar{
+    padding: 1em .5em 1em 0;
+    float: left;
+    width: 43px;
+    height: 27px;
+
+
+}
+.avatarTxt{
+    padding: 0.7em;
+    overflow: hidden;
 }

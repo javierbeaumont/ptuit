@@ -19,25 +19,25 @@
  */
 
 /**
- * Description of actionMensaje
+ * Descripcion indexControl: este archivo sera llamado por el controlador frontal.
+ * se debe retornar un array que incluya los datos "pagina" y "datos"
+ * (datos puede ser otro array que incluya todo los datos variables  de la pagina.
  *
  * @author rubentxu
  */
-class actionMensaje {
+class mensajeControl {
 
     public function cogerMensaje() {
 
-        $mensaje = $_POST("mensaje");
-       
-            
-        
+        return array("pagina" => "cajaMensajes.php", "datos" => "HOLA A TODOS ESTO ES PTUIT ");
     }
 
-    private function validar() {
-         if (strlen($mensaje > 160) || strlen($mensaje)==0) {
-             
-         }
+    public function crearMensaje() {
 
+        $mensaje=$_POST['txtMen'];
+        $usuario=$_SESSION['idUser'];
+        return array("pagina" => "json",
+            "datos" => array ('usuario'=>$usuario,'mensaje'=>$mensaje));
     }
 
 }
