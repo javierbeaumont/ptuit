@@ -29,7 +29,7 @@ class validar{
 */
 function validar_email($email) 
 	 {
-	    $regex = "/(^[/w]+[/w-_.]{0,63}\@{1}[/w-_]{1,254}\.{1}[A-Za-z]{2,6})$/";
+	    $regex = "/(^[a-z]+[a-z0-9-_\.]{0,63}@{1}[a-z0-9-_]{1,254}\.{1}[a-z]{2,6})$/i";
 	    // check the string and ensure that it contents the '@' and '.' symbols or go away
 	    (strpos($email, '@') && strpos($email, '.')) || return false;
 	    // test the string with the regular expresion
@@ -56,10 +56,10 @@ function comparar_clave($clave,$repClave){
    return ($clave == $repClave);
 } 
 
-///Falta la creacion de una funcion que compruebe en la BD si el nick esta o no
+//Falta la creacion de una funcion que compruebe en la BD si el nick esta o no
 function esta_nick($nick)
 {
-///llamar al metodo que se ocupa de comprobar si esta el nick.
+//llamar al metodo que se ocupa de comprobar si esta el nick.
 return true;
 }
 

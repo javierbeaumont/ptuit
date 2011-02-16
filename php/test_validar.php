@@ -1,50 +1,54 @@
 <?php
-///incluir clase
+/// Test for the 'validar' class
 include ("validar.php");
-///crear clase
+
 $validar = new validar();
-///recojo las variables del formulario
+
+// test the data received
 $nick = $_POST["inputUser"];
 $correo = $_POST["inputCorreo"];
 $pass = $_POST["inputPass"];
 $rpass = $_POST["inputRpass"];
 
-///miro si el email es valido
+// check if the e-mail is valid
 if ($validar->validar_email($correo)) 
 {
-   echo  ' es una dirección válida de correo';
+   echo  'Appears to be a valid e-mail';
 } 
 else 
 {
-   echo  'no es una direccion valida';
+   echo  'Appears to be a wrong e-mail';
 }
-///miro si las claves son iguales.
+
+// check the length of the password
 if ($validar->validar_clave($pass, $error)) 
 {
-   echo  'la clave esta bien';
+   echo  'The password is long enough';
 } 
 else 
 {
    echo  $error;
 }
-///miro si las claves son iguales.
+
+// check the two fields sent as password ensuring that both have the same content
 if ($validar->comparar_clave($pass, $rpass)) 
 {
-   echo  'la claves son iguales';
+   echo  'Both passwords are the same';
 } 
 else 
 {
-   echo  'Las claves no son iguales';
+   echo  'The passwords are different';
 }
-/// falta la que comprueba el nick si esta en la BD
 
+
+// falta la que comprueba si el nick esta en la BD
 if ($validar->esta_nick($nick)) 
 {
-   echo  'nick correcto';
+   echo  'Correct username';
 } 
 else 
 {
-   echo  'Las claves no son iguales';
+   echo  'Incorrect username';
 }
 
 
