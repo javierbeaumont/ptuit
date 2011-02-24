@@ -14,6 +14,6 @@ web/conf.php
 ------------
 Database configuration file.
 
-php/bbdd/ptuit.sql
+php/db/ptuit.sql
 ------------------
 SQL Dump
